@@ -1,0 +1,60 @@
+﻿@using Innovation_Library.Models
+@model Innovation_Library.Models.Borrower
+@{
+    ViewBag.Title = "BorrowerDetails";
+    Layout = "~/Views/Shared/_Student.cshtml";
+
+    ApplicationDbContext _db = new ApplicationDbContext();
+
+    Book _Book = _db.Books.Find(Model.AllocatedBookId);
+
+}
+
+<div class="request-book-title mt-3 mb-4">
+    <h5 class="p-0 m-0"><b>Borrower Details</b></h5>
+</div>
+<div class="book-fines-details">
+    <div class="row">
+        <div class="col-md-6 py-3">
+            <div class="row">
+                <div class="col-6">Student Name</div>
+                <div class="col-6"><b>: @Model.StudentName</b></div>
+            </div>
+            <div class="row">
+                <div class="col-6">Email</div>
+                <div class="col-6"><b>: @Model.Email</b></div>
+            </div>
+            <div class="row">
+                <div class="col-6">Borrowed Date</div>
+                <div class="col-6"><b>: @Model.BorrowedDate</b></div>
+            </div>
+            <div class="row">
+                <div class="col-6">Expected Return</div>
+                <div class="col-6"><b>: @Model.ExpectedReturnDate</b></div>
+            </div>
+            <div class="row">
+                <div class="col-6">ISBN</div>
+                <div class="col-6"><b>: @Model.ISBN</b></div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-2 mt-md-0">
+            <p class="text-white bg-secondary p-2 rounded-1 mb-1">Book Info.</p>
+            <div class="row">
+                <div class="row">
+                    <div class="col-6">Book Title</div>
+                    <div class="col-6"><b>: @_Book.BookTitle</b></div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Author</div>
+                    <div class="col-6"><b>: @_Book.Author</b></div>
+                </div>
+            </div>
+            <hr class="col-primary">
+            <div class="my-2">
+                <a href="@Url.Action("Dashboard", "Student")" class="student-btn stu-btn-primary">
+                    Back To Borrow Requests <i class="fa fa-check-double"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

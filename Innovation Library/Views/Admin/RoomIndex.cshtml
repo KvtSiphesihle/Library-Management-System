@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Innovation_Library.Models.Room>
+@{
+    ViewBag.Title = "RoomIndex";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Rooms";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th>Status</th>
+            <th>Table Desk</th>
+            <th>Whiteboard</th>
+            <th>Projector</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.RoomId</td>
+                <td>@item.RoomName</td>
+                <td>@item.Capacity</td>
+                <td>@item.Status</td>
+                <td>@item.TableDesk</td>
+                <td>@item.Whiteboard</td>
+                <td>@item.Projector</td>
+                <td>
+                    <div class="d-flex">
+                        <a href="@Url.Action("Delete", "Rooms", new { id=item.RoomId})" class="btn btn-danger" style="margin-left:6px;">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

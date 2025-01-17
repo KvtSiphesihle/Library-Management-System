@@ -1,0 +1,65 @@
+﻿@model Innovation_Library.Models.Book
+@{
+    ViewBag.Title = "BorrowSuccess";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="request-book-title mt-3">
+    <h5 class="p-0 m-0">Library Books</h5>
+</div>
+
+<hr />
+
+<h5>More about the book.</h5>
+<div class="row py-4">
+    <div class="col-md-2">
+        <div class="image-wrapper">
+            <img src="@Model.Image" width="100" alt="Alternate Text" />
+        </div>
+    </div>
+    <div class="col-md-10 mt-3 mt-md-0">
+        <div class="book-details-wrapper p-3">
+            <h3>Details</h3>
+            <hr />
+            <div class="row">
+                <div class="col-6">
+                    <p class="m-0 p-0"><b>Title</b></p>
+                </div>
+                <div class="col-6">
+                    <p class="m-0 p-0">: @Model.BookTitle</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="m-0 p-0"><b>Author</b></p>
+                </div>
+                <div class="col-6">
+                    <p class="m-0 p-0">: @Model.Author</p>
+                </div>
+            </div>
+        </div>
+        <p class="alert alert-info my-4">The book has to be returned before <b>@ViewBag.ExpectedReturn.ToShortDateString()</b></p>
+
+    </div>
+</div>
+
+<p class="alert alert-success">Your Book Borrow Request has been successfully processed, see the full details about</p>
+
+<button onclick="locateToBorrowRequest()" class="inno-btn bg-primary text-white">Proceed To Borrow Requests</button>
+
+<style>
+    .image-wrapper{
+        height: 250px;
+    }
+    .image-wrapper img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+</style>
+
+<script>
+    function locateToBorrowRequest() {
+        location.replace("/Student/Dashboard");
+    }
+</script>

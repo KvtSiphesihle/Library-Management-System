@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "BookRequestSuccess";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="request-book-title mt-3">
+    <h5 class="p-0 m-0">Book Request Success</h5>
+</div>
+<div class="books-request">
+    <p class=" m-0 book-request-badge">
+        <b>Note</b> : Hooray ! your book request has been sent to the administrator, 
+        please be patient while the admin is processing your request.
+    </p>
+    <div class="request-book-form mt-2">
+        <div>
+            <p class="text-success"><i class="fa text-success fa-check-circle"></i> Book Request was successfully sent.</p>
+        </div>
+        <a class="btn btn-dark" href="@Url.Action("IndexRequests", "Library")">View My Requests</a>
+    </div>
+</div>
+

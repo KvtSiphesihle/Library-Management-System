@@ -1,0 +1,70 @@
+﻿@model Innovation_Library.Models.Exchanges
+@{
+    ViewBag.Title = "ExchangeDetails";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Exchanges Details";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <p class="px-3 py-2 mb-2 bg-dark text-light">Exchange Details</p>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="m-0">Exchange Key</p>
+            </div>
+            <div class="col-md-6">
+                <p class="m-0">@Model.ExchangeKey</p>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-md-6">
+                <p class="m-0">Exchange Time</p>
+            </div>
+            <div class="col-md-6">
+                <p class="m-0">@Model.ExchangeTime</p>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-md-6">
+                <p class="m-0">Status</p>
+            </div>
+            <div class="col-md-6">
+                <p class="m-0 px-2 py-1 badge badge-success">@Model.Status</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h4 class="mb-2">Requested Items</h4>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <rbody>
+                <tr>
+                    @foreach (var item in Model.ReturnItems)
+                    {
+                        <td>@item.Book.BookTitle</td>
+                        <td>R @item.Book.BookPrice</td>
+                    }
+                </tr>
+            </rbody>
+        </table>
+    </div>
+</div>
+
+<hr />
+
+@if (!Model.IsPickedUp || !Model.IsArrived || !Model.IsCollected)
+{
+    <a class="btn btn-primary" href="@Url.Action("AssignExchangeDuty", "OrderManagement", new { id=Model.ExchangeId})">Assign Duty</a>
+}
+
+@if (Model.IsCollected)
+{
+    <p>This Order was collected by <b>@Model.Order.FirstName @Model.Order.LastName</b></p>
+}
+
+<hr />

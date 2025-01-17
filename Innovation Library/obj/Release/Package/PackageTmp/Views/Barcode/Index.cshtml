@@ -1,0 +1,78 @@
+﻿@using Innovation_Library.Models
+@model Barcode
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/Assets/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Generate Barcode</h2>
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    @Html.Label("Select Barcode Type:", new { @class = "col-md-12 control-label" })
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(model => model.BarcodeType,
+             new SelectList(Enum.GetValues(typeof(BarcodeType))),
+             "Select Barcode", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Enter Your Text:", new { @class = "col-md-12 control-label" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(m => m.Text, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Select Image Format:", new { @class = "col-md-12 control-label" })
+                    <div class="col-md-12">
+                        @Html.RadioButtonFor(model => model.ImageType, ImageType.Png) @Html.Label("PNG")
+                        @Html.RadioButtonFor(model => model.ImageType, ImageType.Jpeg) @Html.Label("JPG")
+                        @Html.RadioButtonFor(model => model.ImageType, ImageType.Bmp) @Html.Label("BMP")
+                        @Html.RadioButtonFor(model => model.ImageType, ImageType.Emf) @Html.Label("EMF")
+                        @Html.RadioButtonFor(model => model.ImageType, ImageType.Svg) @Html.Label("SVG")
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-default" value="Generate Barcode" />
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-lg-6">
+            <h2>View Barcode Image</h2>
+            @{
+                if (!string.IsNullOrEmpty(@ViewBag.ImagePath))
+                {
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <img src=@Url.Content(@ViewBag.ImagePath) alt="Barcode Image" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.ActionLink("Download Image", "Download", "Home", new
+                               {                                                     // routeValues
+                                   ImagePath = @ViewBag.ImagePath,
+                                   ImageName = @ViewBag.ImageName
+                               },
+                               null)
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <hr />
+    </div>
+</body>
+</html>

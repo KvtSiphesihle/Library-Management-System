@@ -1,0 +1,55 @@
+﻿@model Innovation_Library.Models.Borrower
+@{
+    ViewBag.Title = "ApproveRequest";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Approve Borrower Request";
+}
+
+<hr />
+
+<div class="row">
+    <div class="col-4">
+        <p class="p-0">Student Name</p>
+    </div>
+    <div class="col-4">
+        <p class="p-0">: @Model.StudentName</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <p class="p-0">Email</p>
+    </div>
+    <div class="col-4">
+        <p class="p-0">: @Model.Email</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <p class="p-0">Borrowed Date</p>
+    </div>
+    <div class="col-4">
+        <p class="p-0">: @Model.BorrowedDate</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <p class="p-0">Expected Return Date</p>
+    </div>
+    <div class="col-4">
+        <p class="p-0">: @Model.BorrowedDate</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <p class="p-0">Contact Number</p>
+    </div>
+    <div class="col-4">
+        <p class="p-0">: @Model.ContactNo</p>
+    </div>
+</div>
+<hr />
+@using (Html.BeginForm("ApproveRequest", "Admin", FormMethod.Post))
+{
+    <button type="submit" class="btn btn-primary">Confirm Approve <i class="fa fa-check-circle"></i></button>
+}
+

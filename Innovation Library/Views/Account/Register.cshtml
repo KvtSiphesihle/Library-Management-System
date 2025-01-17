@@ -1,0 +1,145 @@
+﻿@model Innovation_Library.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Innovation Library - Register</title>
+    <link rel="stylesheet" href="/Content/Assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Content/Assets/css/index.css" />
+    <link rel="stylesheet" href="/Content/Assets/css/forms.css" />
+    <link href="~/Content/Assets/css/dist.css" rel="stylesheet" />
+</head>
+<body class="form-wrapper">
+    <div class="form-backdrop d-none">
+        <div class="loader-wrapper">
+            <div class="form-nav">
+                <!-- Logo -->
+                <div class="logo form-logo">
+                    <div class="logo-icon text-center">
+                        <i class="fa fa-book logo-f"></i>
+                    </div>
+                    <div class="logo-description text-center">
+                        <h3 class="inno-heading">Innovation Library</h3>
+                    </div>
+                </div>
+                <!-- Logo Ends -->
+            </div>
+            <p class="my-4 text-white text-muted">
+                Sending data to the server, Please wait....
+            </p>
+            <div class="loader">
+                <div class="loading-slider"></div>
+            </div>
+        </div>
+    </div>
+    <div class="form-nav">
+        <!-- Logo -->
+        <div class="logo form-logo">
+            <div class="logo-icon text-center">
+                <i class="fa fa-book logo-f"></i>
+            </div>
+            <div class="logo-description text-center">
+                <h3 class="inno-heading">Innovation Library</h3>
+            </div>
+        </div>
+        <!-- Logo Ends -->
+    </div>
+    <div class="col-md-4 col-10">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+        {
+        <div class="inno-form">
+            <div class="form-title">Register</div>
+            @Html.AntiForgeryToken()
+            <!-- Form Group-->
+            <div class="inno-form-group">
+                <label for="emailaddress">Student Name</label>
+                <input type="text"
+                       name="StudentName"
+                       placeholder="John Doe"
+                       id="Name" />
+                <div class="form-validation">
+                    @Html.ValidationMessageFor(m => m.StudentName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- End Of Form Group-->
+            <!-- Form Group-->
+            <div class="inno-form-group">
+                <label for="phone">Phone</label>
+                <input type="text"
+                       name="ContactNo"
+                       placeholder="033-333-3333"
+                       id="phone" />
+                <div class="form-validation">
+                    @Html.ValidationMessageFor(m => m.ContactNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- End Of Form Group-->
+            <!-- Form Group-->
+            <div class="inno-form-group">
+                <label for="emailaddress">Email Address</label>
+                <input type="email"
+                       name="Email"
+                       placeholder="johndoe@email.com"
+                       id="Email" />
+                <div class="form-validation">
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- End Of Form Group-->
+            <!-- Form Group-->
+            <div class="inno-form-group">
+                <label for="password">Password</label>
+                <input type="password"
+                       name="password"
+                       id="password"
+                       placeholder="6 char(s) or more" />
+                <div class="form-validation">
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- End Of Form Group-->
+            <!-- Form Group-->
+            <div class="inno-form-group">
+                <label for="password">Confirm Password</label>
+                <input type="password"
+                       name="confirmpassword"
+                       id="confirmpassword"
+                       placeholder="6 char(s) or more - Confirm" />
+                <div class="form-validation">
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- End Of Form Group-->
+            <!-- Form Button-->
+            <button type="submit" class="inno-btn custom-btn-primary form-submit form-btn">
+                Register
+            </button>
+            <!-- End Of Form Button-->
+            <div class="row justify-content-between">
+                <div class="col-md-7">
+                    <p class="mt-2">
+                        <b>Already a member ?</b> <a href="@Url.Action("Login", "Account")">sign in</a>
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <p class="mt-2"><b>Go back</b> <a href="@Url.Action("Index", "Home")">home</a></p>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <script src="/Content/Assets/js/jquery.min.js"></script>
+    <script src="/Content/Assets/js/all.min.js"></script>
+    <script src="/Content/Assets/js/index.js"></script>
+    <script src="/Content/Assets/js/bootstrap.min.js"></script>
+    <script src="/Content/Assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

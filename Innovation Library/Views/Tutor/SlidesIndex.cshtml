@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Innovation_Library.Models.Slides>
+@{
+    ViewBag.Title = "SlidesIndex";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Docs Index";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SlideID</td>
+            <td>@item.SlideTitle</td>
+            <td>
+                <a href="@Url.Action("DeleteSlide", "Tutor", new {item.SlideID})" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+

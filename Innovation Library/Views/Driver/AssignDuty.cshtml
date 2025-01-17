@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Innovation_Library.Models.Order>
+@using Innovation_Library.Models;
+@{
+    ViewBag.Title = "AssignDuty";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    var _Driver = Session["DriverModel"] as Driver;
+    ViewBag.PageName = "Assign Duty";
+}
+
+<p>Assign duty to @_Driver.Name</p>
+@using (Html.BeginForm("ConfirmAssign", "Driver", FormMethod.Post))
+{
+    <div class="col-md-6">
+        <input type="hidden" name="driverId" value="@_Driver.UserId" />
+        <small class="my-2">Search order using select list or input order number, <b>Don't use them both.</b></small>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Select Order</label>
+                    <select class="form-control" name="OrderNumber">
+
+                        <option value="">Select Order</option>
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.OrderNo">@item.OrderNo Ordered By @item.FirstName @item.LastName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Input Order Number</label>
+                    <input type="text" name="OrderValue" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div>
+            <small class="text-danger mt-2">@(TempData["Error"] != null ? TempData["Error"].ToString() : "")</small>
+        </div>
+        <button type="submit" class="btn btn-dark mt-2">Assign Duty</button>
+    </div>
+}
+
+

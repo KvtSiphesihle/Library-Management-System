@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Innovation_Library.Models.Driver>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Drivers";
+
+    var className = "m-0 px-2 py-1 badge";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Registration No</th>
+            <th>Email Address</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Orders</th>
+            <th>Availability Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (!item.IsAvailable)
+            {
+                className += " badge-danger";
+            }
+            else
+            {
+                className += " badge-success";
+            }
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.RegistrationNumber</td>
+                <td>@item.EmailAddress</td>
+                <td>@item.Name</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.AssignedOrders</td>
+                <td>
+                    @if (item.IsAvailable)
+                    {
+                        <span class="@className">Available</span>
+                    }
+                    else
+                    {
+                        <span class="@className">Unavailable</span>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm("AssignDuty", "Driver", FormMethod.Post))
+                    {
+                        <input type="hidden" name="UserId" value="@item.UserId" />
+                        <button class="btn btn-dark" type="submit">Assign Duty</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

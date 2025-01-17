@@ -1,0 +1,62 @@
+﻿@model Innovation_Library.Models.Exchanges
+@{
+    ViewBag.Title = "DriverExchangeDetails";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Details";
+}
+
+<p>Notify the customer that the item or order has arrived.</p>
+@{
+    var classNameArrived = "fa fa-times-circle text-danger";
+    var classNamePicked = "fa fa-times-circle text-danger";
+
+    if (Model.IsArrived)
+    {
+        classNameArrived = "fa fa-check-circle text-success";
+    }
+    if (Model.IsPickedUp)
+    {
+        classNamePicked = "fa fa-check-circle text-success";
+    }
+}
+<hr />
+<p class="bg-dark px-2 py-2 m-0 mb-2 text-white">Manage Exchanges Deliveries</p>
+<div class="row">
+    <div class="col-md-3">
+        <p>Picked up <span class="mx-3"><i class="fa fa-long-arrow-right"></i></span> <i class="@classNamePicked"></i></p>
+        <div class="mt-3">
+            @if (!Model.IsPickedUp)
+            {
+                using (Html.BeginForm("PickUp", "OrderManagement", FormMethod.Post))
+                {
+                    <input type="hidden" name="id" value="@Model.ExchangeId" />
+                    <button class="btn btn-primary" type="submit">Pick up</button>
+                }
+            }
+            else
+            {
+                <button class="btn btn-primary" type="submit" disabled>Pick up</button>
+            }
+        </div>
+    </div>
+    <div class="col-md-3">
+        <p>Arrived <span class="mx-3"><i class="fa fa-long-arrow-right"></i></span> <i class="@classNameArrived"></i></p>
+        <div class="mt-3">
+            @if (!Model.IsArrived)
+            {
+                using (Html.BeginForm("NotifyCustomer", "OrderManagement", FormMethod.Post))
+                {
+                    <input type="hidden" name="id" value="@Model.ExchangeId" />
+                    <button class="btn btn-dark" type="submit">Notify Customer</button>
+                }
+            }
+            else
+            {
+                <button class="btn btn-dark" type="submit" disabled>Notify Customer</button>
+            }
+        </div>
+    </div>
+</div>
+
+
+

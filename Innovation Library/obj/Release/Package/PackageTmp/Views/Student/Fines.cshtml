@@ -1,0 +1,94 @@
+﻿@using Innovation_Library.Models;
+@model IEnumerable<Innovation_Library.Models.Borrower>
+@{
+    ViewBag.Title = "Fines";
+    Layout = "~/Views/Shared/_Student.cshtml";
+
+    ApplicationDbContext _db = new ApplicationDbContext();
+    
+}
+<link rel="stylesheet" href="/Content/Assets/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="/Content/Assets/css/dataTables.bootstrap5.min.css" />
+<link rel="stylesheet" href="/Content/Assets/css/dataTables.dataTables.min.css" />
+
+<div class="student-dash-title">
+    <h6>Fines History</h6>
+</div>
+<p class="my-4 mx-0">This is all <b>completed or incomplete</b> fines at a moment.</p>
+<div class="table-wrapper">
+    <table id="purchase-history" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Exp. Return Date</th>
+                <th>Bill Status</th>
+                <th>Bill Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                Book _Book = _db.Books.Find(item.AllocatedBookId);
+                <tr>
+                    <td>@item.BorrowerId</td>
+                    <td>@item.BookTitle</td>
+                    <td>@item.Author</td>
+                    <td>@item.ExpectedReturnDate</td>
+                    <td>
+                        @if (item.IsPayed)
+                        {
+                            <p class="table-badge table-bagge-success m-0">Completed</p>
+                        }
+                        else if (!item.IsPayed)
+                        {
+                            <p class="table-badge table-bagge-danger m-0">Incomplete</p>
+                        }
+                    </td>
+                    <td>@item.BillAmount</td>
+                    <td>
+                        <a href="#" class="bt-table primary-card">View Details</a>
+                        @if (!item.IsPayed)
+                        {
+                            <form action="https://sandbox.payfast.co.za​/eng/process" method="post">
+                                <input type="hidden" name="merchant_id" value="10000100" />
+                                <input type="hidden" name="merchant_key" value="46f0cd694581a" />
+                                <input type="hidden"
+                                       name="return_url"
+                                       value="@Url.Action("PaymentSuccess", "Payment")" />
+                                <input type="hidden"
+                                       name="cancel_url"
+                                       value="http://127.0.0.1:5500/cancel.html" />
+
+                                <input type="hidden" name="amount" value="@item.BillAmount" />
+                                <input type="hidden" name="payment_method" value="cc" />
+                                <input type="hidden" name="item_name" value="@_Book.BookTitle Fines" />
+                                <div class="checkout-btn">
+                                    <button class="bt-table secondary-card">Pay Now</button>
+                                </div>
+                            </form>
+                        
+                        }
+                        else
+                        {
+                            <a href="#" class="bt-table warning-card">Receipt</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script src="/Content/Assets/js/jquery.min.js"></script>
+<script src="/Content/Assets/js/jquery.dataTables.min.js"></script>
+<script src="/Content/Assets/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let table = $("#purchase-history")
+        table.DataTable();
+    })
+</script>

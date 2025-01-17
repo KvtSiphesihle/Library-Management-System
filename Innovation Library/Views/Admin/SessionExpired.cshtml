@@ -1,0 +1,97 @@
+﻿@model Innovation_Library.Models.Booking
+@{
+    ViewBag.Title = "SessionExpired";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Session Expired";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-3">
+        <p>Status</p>
+    </div>
+    <div class="col-md-4">
+        <p> : Not Eligible For Sign In</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <p>Reason</p>
+    </div>
+    <div class="col-md-4">
+        <p id="status">Booking Expired!</p>
+    </div>
+</div>
+<p class="text-danger"><i class="fa fa-exclamation-triangle"></i>  <b>Oops!</b> this booking has expired, @(Model.Status == "Cancelled" ? " and was cancelled due to late arrival" : "please wait while we are cancelling the booking..").</p>
+<input type="hidden" name="id" id="bID" value="@Model.BookingId" />
+<input type="hidden" name="statusVal" id="statusVal" value="@Model.Status" />
+<div class="col-md-7 mt-3" id="progress">
+    <div class="progress">
+        <div class="progress-bar-striped progress-bar"></div>
+    </div>
+</div>
+<hr />
+<div id="gettingID" class="text-success"></div>
+<div id="cancelling" class="text-success"></div>
+<div id="output" class="text-success"></div>
+
+<style>
+    .progress-bar {
+        width: 0%;
+        animation-name: loader;
+        animation-duration: .6s;
+        animation-iteration-count: infinite;
+    }
+    @@keyframes loader {
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+</style>
+
+<script>
+    document.getElementById("status").innerText = "Not Elegible For Sign In";
+
+    if (document.getElementById("statusVal").value == "Cancelled") {
+        document.getElementById("status").innerText = " : Booking was cancelled";
+        document.getElementById("progress").style.display = "none";
+    } else {
+        setTimeout(gettingID, 10000);
+        setTimeout(cancelling, 16000);
+        setTimeout(cancelSession, 20000);
+    }
+
+    function gettingID() {
+        let gettingID = document.getElementById("gettingID");
+        gettingID.innerHTML = "<p><i class='fa fa-check-circle'></i><span class='mx-2'></span>Target ID found</p>";
+    }
+
+    function cancelling() {
+        let bookingID = document.getElementById("bID").value;
+        let cancelling = document.getElementById("cancelling");
+        cancelling.innerHTML = "<p><i class='fa fa-minus'></i><span class='mx-2'></span>Cancelling booking number " + bookingID + "</p>";
+    }
+
+    function cancelSession() {
+        let bookingID = document.getElementById("bID").value;
+        let outputText = document.getElementById("output");
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("CancelBooking", "Booking")",
+            data: { id: bookingID },
+            dataType: "json",
+            success: function (data) {
+                if (data == "success") {
+                    outputText.innerHTML = "<p><i class='fa fa-check-circle'></i><span class='mx-2'></span>Booking number " + bookingID + " was successfully cancelled</p>";
+                    document.getElementById("progress").style.display = "none";
+                }
+            }
+        })
+    }
+</script>
+

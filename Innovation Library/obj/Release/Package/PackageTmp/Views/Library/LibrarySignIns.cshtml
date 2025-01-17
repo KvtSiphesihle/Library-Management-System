@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Innovation_Library.Models.LibrarySignIn>
+@{
+    ViewBag.Title = "LibrarySignIns";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Library Sign In's";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Time in</th>
+            <th>Time out</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.StudentEmail</td>
+                <td>@item.Name</td>
+                <td>@item.SignInTime</td>
+                <td>@item.SignOutTime</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("ExportReport", "Library", FormMethod.Post))
+{
+    <div class="mt-3">
+        <button type="submit" class="btn btn-outline-primary">Export Report <span class="mx-2"></span><i class="fa fa-download"></i></button>
+    </div>
+}
+

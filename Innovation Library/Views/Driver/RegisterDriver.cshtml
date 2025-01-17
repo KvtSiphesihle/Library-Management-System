@@ -1,0 +1,26 @@
+﻿@model Innovation_Library.Models.Driver
+@{
+    ViewBag.Title = "RegisterDriver";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Register Driver";
+}
+
+<div class="col-md-5">
+    @using (Html.BeginForm("RegisterDriver", "Driver", FormMethod.Post, new { role = "form" }))
+    {
+        <div class="form-group">
+            <label>Email Address</label>
+            @Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control", @placeholder = "driver@innovation.com" })
+        </div>
+        <div class="form-group mt-3">
+            <label>Name</label>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Driver" })
+        </div>
+        <div class="form-group mt-3">
+            <label>Phone Number</label>
+            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", @placeholder = "000 0000 000" })
+        </div>
+        <button class="btn btn-dark mt-3" type="submit">Register Driver</button>
+    }
+</div>
+

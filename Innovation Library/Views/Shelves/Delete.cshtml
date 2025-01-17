@@ -1,0 +1,14 @@
+﻿@model Innovation_Library.Models.Shelves
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h4>Delete</h4>
+<p>Are you sure you want to delete this ?</p>
+<hr />
+@using (Html.BeginForm("Delete", "Books", FormMethod.Post))
+{
+    <button type="submit" class="btn btn-danger">Confirm Delete</button>
+}
+

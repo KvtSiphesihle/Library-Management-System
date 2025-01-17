@@ -1,0 +1,39 @@
+﻿@model Innovation_Library.Models.Exchanges
+@using Innovation_Library.Models
+@{
+    ViewBag.Title = "AssignExchangeDuty";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Assign Duty";
+
+    ApplicationDbContext _db = new ApplicationDbContext();
+
+    var Drivers = _db.Drivers.ToList();
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-group col-md-5">
+        <label class="label" for="driver_input">Select Driver</label>
+        <select id="driver_input" class="form-control" name="DriverId">
+            <option value="" selected>Choose driver</option>
+            @if (Drivers.Count() > 0)
+            {
+                foreach (var item in Drivers)
+                {
+                    <option value="@item.UserId">@item.Name</option>
+                }
+            }
+            else
+            {
+                <option value="">No Available Driver</option>
+            }
+        </select>
+        @if (Drivers.Count() == 0)
+        {
+            <p>Add new driver <a href="@Url.Action("RegisterDriver", "Driver")">here</a></p>
+        }
+    </div>
+    <button type="submit" class="btn btn-secondary mt-2">Confirm Duty Assign</button>
+}
+
+

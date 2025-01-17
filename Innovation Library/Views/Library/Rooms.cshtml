@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Innovation_Library.Models.Room>
+@{
+    ViewBag.Title = "Rooms";
+    Layout = "~/Views/Shared/_RoomsLayout.cshtml";
+}
+
+<div class="rooms-list">
+    <div class="row px-0">
+        <!-- Room Wrapper-->
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-12 col-sm-6 mb-3">
+                <div class="room-card w-100">
+                    <div class="room-image">
+                        <img src="/@item.Image" alt="Alternate Text" />
+                    </div>
+                    <div class="room-content">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="p-0 m-0 room-name"><b>@item.RoomName</b></h6>
+                            <span class="room-status unavailable">@item.Status</span>
+                        </div>
+                        <div class="room-specs mt-2">
+                            <!--Room Spec-->
+                            <div class="row room-spec">
+                                <div class="col-6 spec">
+                                    <span class="label">Capacity</span>
+                                </div>
+                                <div class="col-6 spec text-end">
+                                    <span class="value">@item.Capacity</span>
+                                </div>
+                            </div>
+                            <!--Room Spec-->
+                            <div class="row room-spec">
+                                <div class="col-6 spec">
+                                    <span class="label">Table Desk</span>
+                                </div>
+                                <div class="col-6 spec text-end">
+                                    <span class="value">@item.TableDesk</span>
+                                </div>
+                            </div>
+                            <!--Room Spec-->
+                            <div class="row room-spec">
+                                <div class="col-6 spec">
+                                    <span class="label">Whiteboard</span>
+                                </div>
+                                <div class="col-6 spec text-end">
+                                    <span class="value">@item.Whiteboard</span>
+                                </div>
+                            </div>
+                            <!--Room Spec-->
+                            <div class="row room-spec">
+                                <div class="col-6 spec">
+                                    <span class="label">Projector</span>
+                                </div>
+                                <div class="col-6 spec text-end">
+                                    <span class="value">@item.Projector</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                            @*@using (Html.BeginForm("BookRoom", "Booking", FormMethod.Post, new {role="form"}))
+                            {
+                                <input type="hidden" name="id" value="@item.RoomId" />
+                                <button type="submit" class="room-btn w-100">RESERVE</button>
+                            }*@
+
+                            <a class="room-btn w-100" href="@Url.Action("BookRoom", "Booking", new { id=item.RoomId})">Reserve room</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

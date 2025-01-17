@@ -1,0 +1,265 @@
+﻿@model IEnumerable<Innovation_Library.Models.Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="request-book-title mt-3">
+    <h5 class="p-0 m-0">Library Books</h5>
+</div>
+<div class="book-shop py-3">
+
+        @using (Html.BeginForm("SearchBook", "Library", FormMethod.Post, new { role = "form", @class = "search-form w-100" }))
+        {
+            <div class="book-search w-100 d-flex justify-content-between py-2 w-100">
+                <div class="col-md-6 col-9 input-wrapper-search">
+                    <input class="h-100 w-100" name="SearchText" type="text" id="search-book" placeholder="Search book title or book author" />
+                    <i class="fa fa-search search-icon"></i>
+                </div>
+                <button type="submit" class="inno-btn custom-btn-primary">Search</button>
+            </div>
+        }
+        
+        <hr />
+        @if (TempData["NewOrderRequestMessage"] != null)
+        {
+            <p class="alert alert-primary px-2 py-1">@TempData["NewOrderRequestMessage"]</p>
+            <hr />
+        }
+        <div class="filters d-flex align-items-center justify-content-between">
+            <p class="m-0"><b>Filters</b></p>
+            <div class="d-flex align-items-center">
+                <div class="filter">
+                    <p>All</p>
+                </div>
+                <div class="filter">
+                    <p>Popular</p>
+                </div>
+                <div class="filter">
+                    <p>Bussiness</p>
+                </div>
+            </div>
+        </div>
+        <div class="my-3"></div>
+        <div class="books-shop-list">
+            <div class="row justify-content-between">
+                <div class="col-md-3">
+                    <div class="side-bar-card">
+                        <div class="side-bar-card-title">
+                            <h6>TOP <span>SELLER</span></h6>
+                        </div>
+                        @if (ViewBag.TopSeller != null)
+                        {
+                            /**/
+                            <div class="side-bar-card-content">
+                                <p class="side-bar-card-book-title">@ViewBag.TopSeller.BookTitle</p>
+                                <img src="./@ViewBag.TopSeller.Image" alt="" class="side-bar-card-image" />
+                                <div class="side-bar-card-book-details">
+                                    <div class="card-book-details">
+                                        <div class="book-ratings">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <h5 class="side-bar-card-book-price">R <b>@ViewBag.TopSeller.BookPrice, 00</b></h5>
+                                    </div>
+                                    <div class="card-buy-btn d-flex">
+                                        @using (Html.BeginForm("BorrowBook", "Library", FormMethod.Post, new { role = "form" }))
+                                        {
+                                            <input type="hidden" name="id" value="@ViewBag.TopSeller.BookId" />
+                                            <button type="submit" title="Borrow Book" class="btn btn-dark">
+                                                <i class="fas fas fa-list"></i>
+                                            </button>
+                                        }
+                                        <div class="px-1"></div>
+
+                                        <button onclick="Purchase(@ViewBag.TopSeller.BookId)" title="Purchase Book" class="btn btn-dark purchase">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="m-0 my-2 mx-3">No Top Seller Product</p>
+                        }
+                    </div>
+                    <!-- Books Category-->
+                    <div class="side-bar-card mt-2">
+                        <div class="side-bar-card-title">
+                            <h6><span>CATEGORIES</span></h6>
+                        </div>
+                        <div class="side-bar-card-content categories">
+                            <ul>
+                                <li><a href="#">Programming</a></li>
+                                <li><a href="#">Operation Systems</a></li>
+                                <li><a href="#">Acounting</a></li>
+                                <li><a href="#">Mathematics</a></li>
+                                <li><a href="#">Networking</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 mt-4 mt-md-0">
+                    <div class="products-wrapper">
+                        <div class="row w-100 h-100 p-0 m-0">
+                            <!-- Book 1-->
+                            @if (Model.Count() > 0)
+                            {
+                                /**/
+                                foreach (var item in Model)
+                                {
+                                    <div class="col-md-3 col-6">
+                                        <div class="side-bar-card library-card" onclick="ViewBookDetails(@item.BookId)">
+                                            <!-- Card Content-->
+                                            <div class="side-bar-card-content">
+                                                <p class="side-bar-card-book-title text-center">@item.BookTitle</p>
+                                                @using (Html.BeginForm("BookDetails", "Books", FormMethod.Post, new { role = "form" }))
+                                                {
+                                                    <input type="hidden" name="id" value="@item.BookId" />
+                                                    <button style="background: transparent; border:1px solid grey" type="submit">
+                                                        <div class="card-image">
+                                                            <img src="/@item.Image" alt="" />
+                                                        </div>
+                                                    </button>
+                                                }
+
+                                                <div class="side-bar-card-book-details">
+                                                    <div class="card-book-details">
+                                                        @if (item.Quantity == 0)
+                                                        {
+                                                            /**/
+                                                            <p class="text-danger m-0">Out Of Stock</p>
+                                                            <h5 class="side-bar-card-book-price">
+                                                                R <b>@item.BookPrice, 00</b>
+                                                            </h5>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="book-ratings">
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                                <i class="fas fa-star"></i>
+                                                            </div>
+                                                            <h5 class="side-bar-card-book-price">
+                                                                R <b>@item.BookPrice, 00</b>
+                                                            </h5>
+                                                        }
+                                                    </div>
+                                                    <div class="card-buy-btn d-flex">
+                                                        @if (item.Quantity == 0)
+                                                        {
+                                                            <button disabled title="Borrow Book" class="btn btn-dark">
+                                                                <i class="fas fas fa-list"></i>
+                                                            </button>
+                                                            <span class="mx-1"></span>
+                                                            <button disabled title="Purchase Book" class="btn btn-dark purchase">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </button>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            using (Html.BeginForm("BorrowBook", "Library", FormMethod.Post, new { role = "form" }))
+                                                            {
+                                                                <input type="hidden" name="id" value="@item.BookId" />
+                                                                <button type="submit" title="Borrow Book" class="btn btn-dark">
+                                                                    <i class="fas fas fa-list"></i>
+                                                                </button>
+                                                            }
+                                                            <span class="mx-1"></span>
+                                                            <button onclick="Purchase(@item.BookId)" title="Purchase Book" class="btn btn-dark">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <p class="m-0 my-2 mx-2">No Product Found</p>
+                            }
+
+                        </div>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="books-pagination d-flex justify-content-end">
+                        <div class="pagination">
+                            <ul>
+                                <li><a href="#" class="page-bt">Prev</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#" class="page-bt">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Of Pagination -->
+                    <hr class="p-0 m-0" />
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+
+    @*function ViewBookDetails(id) {
+        $.ajax({
+                type: "POST",
+                url: "@Url.Action("BookDetails", "Books")",
+                data: {
+                    id: id
+                }
+                dataType: "json"
+                success: function (res) {
+                    alert("Doe")
+                }
+        })
+    }*@
+
+    function reloadPage() {
+        location.reload()
+    }
+    function Purchase(id) {
+        window.setTimeout(reloadPage, 1000);
+        $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddToCart", "ShoppingCart")",
+                data: {
+                    id: id
+                },
+                dataType: "json",
+                success: function (res) {
+                    alert("Item Added!", res._ProductName + " has been added!", "success");
+                    window.setTimeout(reloadPage, 1000);
+                }
+        })
+        var counter = 0;
+    }
+
+    @*function Borrow(id) {
+        window.setTimeout(reloadPage, 1000);
+        $.ajax({
+                type: "POST",
+                url: "@Url.Action("BorrowBook", "Library")",
+                data: {
+                    id: id
+                },
+                dataType: "json",
+            success: function (res) {
+                alert(res.BookTitle + " Borrow Request has been sent.\nYou'll be redirected to your dashboard.");
+                    window.location.replace("/Student/Dashboard");
+                }
+        })
+    }*@
+</script>

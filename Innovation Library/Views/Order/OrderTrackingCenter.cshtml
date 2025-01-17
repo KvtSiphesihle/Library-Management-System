@@ -1,0 +1,152 @@
+﻿@using Innovation_Library.Models;
+@using Microsoft.AspNet.Identity;
+@model Innovation_Library.Models.Order
+@{
+    ViewBag.Title = "OrderTrackingCenter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ApplicationDbContext _db = new ApplicationDbContext();
+    var SignedUserId = User.Identity.GetUserId();
+
+    var userOrders = _db.Orders.Where(o => o.CustomerId == SignedUserId).ToList();
+    var classNameIsPicked = "";
+    var classNameIsOnRoute = "";
+    var classNameIsDelivered = "";
+    var progressClass = "";
+
+    // bool Valid = Convert.ToBoolean(Session["ValidOrder"]);
+}
+<script src="~/Content/Assets/js/jquery.min.js"></script>
+<script src="~/Content/Assets/js/jSignature.min.js"></script>
+<script src="~/Scripts/modernizr-2.8.3.js"></script>
+<div class="digital-signature d-none" id="digital_wrapper">
+    <!-- Digital Signature -->
+    
+</div>
+<!--  -->
+<!-- Shopping Cart-->
+<h5 class="mt-3">Order Tracking Center</h5>
+<div class="order-tracking-wrapper">
+    <div class="order-tracking-nav w-100">
+        @using (Html.BeginForm("SearchValidOrder", "Order", FormMethod.Post, new { @class = "w-100" }))
+        {
+            <div class="row">
+                <div class="col-md-8">
+                    <select name="_OrderNumber" class="form-control">
+                        <option selected value="">Choose Order No</option>
+                        @foreach (var item in userOrders)
+                        {
+                            <option value="@item.OrderNo">Order No : @item.OrderNo</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-dark">Search Order</button>
+                </div>
+            </div>
+        }
+    </div>
+    <p class="my-1">
+        <small class="text-danger">@TempData["Error"]</small>
+    </p>
+    <div class="order-tracking-details">
+        <div class="order-tracking-title">
+            <h6 class="m-0">Order Information</h6>
+        </div>
+        <div class="order-tracking-content">
+
+            @if (Session["ValidOrder"] != null && Model != null)
+            {
+                if (Model.IsPicked)
+                {
+                    classNameIsPicked = "bg-primary";
+                    progressClass = "pro-50";
+                }
+                if (Model.IsOnRoute && Model.IsPicked)
+                {
+                    classNameIsOnRoute = "bg-primary";
+                    progressClass = "pro-100";
+                }
+                if (Model.IsOnRoute && Model.IsPicked && Model.isDelivered)
+                {
+                    classNameIsDelivered = "bg-primary";
+                }
+                <div class="grid-30">
+                    <div class="user-tracking">
+
+                        <!-- Order Details -->
+                        <div class="order-details">
+                            <div class="order-tracking-title out_side">
+                                <h6 class="m-0">User order details</h6>
+                            </div>
+                            <div class="mt-">
+                                <div class="user_info">
+                                    <p class="m">Order Number</p>
+                                    <p class="m">: @Model.OrderNo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <!-- Order Details Ends -->
+                        <p class="m-0">Keys</p>
+                        <div class="d-flex mb-4">
+                            <div class="key_grid">
+                                <i class="fa fa-check-circle"></i>
+                                <p class="m-0">Order Picked</p>
+                            </div>
+                            <div class="key_grid">
+                                <i class="fa fa-arrow-right-arrow-left"></i>
+                                <p class="m-0">Order On Route</p>
+                            </div>
+                            <div class="key_grid">
+                                <i class="fa fa-truck-pickup"></i>
+                                <p class="m-0">Order Arrived</p>
+                            </div>
+                        </div>
+                        <div class="user-order-tracking-wrapper">
+                            <div class="order-circle @classNameIsPicked">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div class="order-circle @classNameIsOnRoute">
+                                <i class="fa fa-arrow-right-arrow-left"></i>
+                            </div>
+                            <div class="order-circle @classNameIsDelivered">
+                                <i class="fa fa-truck-pickup"></i>
+                            </div>
+                            <div class="order-tracking-line">
+                                <div class="inner-progress @progressClass"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-information">
+                        <div class="order-tracking-title out_side">
+                            <h6 class="m-0">User Information</h6>
+                        </div>
+                        <div class="user_info">
+                            <p class="m-0"><b>Email</b></p>
+                            <p class="m-0">: @Model.Email</p>
+                        </div>
+                        <div class="user_info">
+                            <p class="m-0"><b>Username</b></p>
+                            <p class="m-0">: @@@Model.FirstName @Model.LastName</p>
+                        </div>
+                        @if (Model.isDelivered && !Model.IsDeliveryConfirmed)
+                        {
+                            <a  href="@Url.Action("ConfirmDelivery", "Order", new {id=Model.OrderId})"
+                                id="digital_signature_btn"
+                                class="btn btn-dark mt-1">
+                                Confirm Delivery
+                            </a>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <p>Waiting For Request....</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

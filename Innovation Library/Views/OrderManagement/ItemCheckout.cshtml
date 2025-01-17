@@ -1,0 +1,75 @@
+﻿@model Innovation_Library.Models.Book
+@{
+    ViewBag.Title = "ItemCheckout";
+    Layout = "~/Views/Shared/_Student.cshtml";
+    var Total = Convert.ToDouble(Session["totalAmount"]);
+}
+<div class="student-dash-title">
+    <h6>Checkout</h6>
+</div>
+<div class="exchange-success-scetion">
+    <div>
+        <p class="exchange-vl mt-2 alert alert-info py-1 px-2">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <b>Info</b> Your item exchange has been successfully processed, but
+            payment is still pending.
+        </p>
+        <div class="py-4 my-4">
+            <div class="row d-flex align-items-center">
+                <div class="col-8">
+                    <h4 class="text-dark mb-3">Successful Request</h4>
+                    <p class="alert alert-success py-1 px-2 mt-4">
+                        Checkout to complete the item exchange.
+                    </p>
+                </div>
+                <div class="col-4">
+                    <div class="payment py-4 px-4 bg-dark rounded-1">
+                        <p class="text-light rounded-1 bg-secondary px-3 py-2">
+                            Checkout Info.
+                        </p>
+                        <div class="row text-light">
+                            <div class="col-5"><p class="m-0">Item Price</p></div>
+                            <div class="col-1 d-flex justify-content-center">
+                                <p class="m-0">:</p>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <p class="m-0"><span>R</span>@Total</p>
+                            </div>
+                        </div>
+                        <hr class="text-light" />
+                        <div class="row text-light">
+                            <div class="col-5"><p class="m-0">Item Name</p></div>
+                            <div class="col-1 d-flex justify-content-center">
+                                <p class="m-0">:</p>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <p class="m-0">@Model.BookTitle</p>
+                            </div>
+                        </div>
+                        <hr class="text-light" />
+                        <form action="https://sandbox.payfast.co.za​/eng/process" method="post">
+                            <input type="hidden" name="merchant_id" value="10000100" />
+                            <input type="hidden" name="merchant_key" value="46f0cd694581a" />
+                            <input type="hidden"
+                                   name="return_url"
+                                   value="https://ocalhost:50462/OrderManagement/CheckoutSuccess" />
+                            <input type="hidden"
+                                   name="cancel_url"
+                                   value="http://127.0.0.1:5500/Order" />
+
+                            <input type="hidden" name="amount" value="@Total" />
+                            <input type="hidden" name="payment_method" value="cc" />
+                            <input type="hidden" name="item_name" id="orderNo" value="@Model.BookTitle" />
+                            <button type="submit" class="btn btn-light rounded-1 w-100">
+                                Checkout
+                                <i class="fa fa-dollar-sign"></i>
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

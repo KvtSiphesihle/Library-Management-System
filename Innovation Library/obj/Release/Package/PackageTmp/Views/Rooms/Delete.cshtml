@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<p>Are you sure you want to remove this ?</p>
+@using (Html.BeginForm("Delete", "Rooms", FormMethod.Post))
+{
+    <div>
+        <button class="btn btn-danger">Confirm Delete</button>
+        <a href="@Url.Action("RoomIndex","Room")" class="btn btn-primary">Cancel</a>
+    </div>
+}

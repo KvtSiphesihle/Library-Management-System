@@ -1,0 +1,84 @@
+﻿@font-face {
+    font-family: Kanit;
+    src: url(../fonts/Kanit-Regular.ttf);
+}
+
+.body-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Kanit";
+    position: relative;
+}
+
+.success-box {
+    width: 60%;
+    height: 400px;
+    background: purple;
+    border-radius: 4px;
+    border-top: 4px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.payment-wrapper{
+    position: relative;
+    width: 15%;
+    background: white;
+    border-radius: 4px;
+    padding: 4px 18px;
+}
+.pay-con{
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    transform: translateY(-50%);
+    background: green;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    border: 1px solid green;
+}
+.btn{
+    outline: none !important;
+}
+.btn-dark{
+    outline: none !important;
+    color: white !important;
+    border: 1px solid white !important;
+}
+.circle{
+    position: absolute;
+    border-radius: 50%;
+    background: purple;
+    opacity: .7;
+    z-index: -1;
+}
+.circle-1{
+    width: 100px;
+    height: 100px;
+    left: 8%;
+    top: 10%;
+}
+.circle-2 {
+    width: 160px;
+    height: 160px;
+    left: 12%;
+    top: 6%;
+}
+.circle-3 {
+    width: 100px;
+    height: 100px;
+    right: 8%;
+    top: 75%;
+
+}
+
+.circle-4 {
+    width: 160px;
+    height: 160px;
+    right: 12%;
+    top: 70%;
+}

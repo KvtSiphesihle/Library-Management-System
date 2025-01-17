@@ -1,0 +1,180 @@
+﻿@using Innovation_Library.Models;
+@{
+    /**/
+
+    ViewBag.Title = "ProcessExchange";
+    Layout = "~/Views/Shared/_Student.cshtml";
+    var oldItem = Session["oldItemModel"] as Book;
+    var newItem = Session["newItemModel"] as Book;
+    var order = Session["Order"] as Order;
+
+    double TotalAmountDue = 0;
+    double TotalOwe = 0;
+
+
+    if (oldItem.BookPrice > newItem.BookPrice)
+    {
+        TotalOwe = Convert.ToDouble(oldItem.BookPrice - newItem.BookPrice);
+    }
+    else if (oldItem.BookPrice < newItem.BookPrice)
+    {
+        TotalAmountDue = Convert.ToDouble(newItem.BookPrice - oldItem.BookPrice);
+    }
+}
+
+<div class="student-dash-title">
+    <h6>Process Item exchange</h6>
+</div>
+<div class="row mt-2">
+    <div class="col-3">
+        <div class="item-card">
+            <div class="item-image">
+                <div class="image-wrapper">
+                    <img src="/@oldItem.Image" alt="" />
+                </div>
+                <div class="item-description">
+                    <p class="m-0">@oldItem.BookTitle</p>
+                    <h3 class="m-0"><span>R</span>@oldItem.BookPrice</h3>
+
+                </div>
+            </div>
+            <div class="item-btn">
+                <button disabled class="btn btn-danger">
+                    Pending For Replacement
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--Icon-->
+    <div class="col-1 d-flex align-items-center">
+        <i class="fa fa-exchange icon-vl text-dark m-0"
+           aria-hidden="true"></i>
+    </div>
+    <!--End Of Icon-->
+    <div class="col-3">
+        <div class="item-card">
+            <div class="item-image">
+                <div class="image-wrapper">
+                    <img src="/@newItem.Image" alt="" />
+                </div>
+                <div class="item-description">
+                    <p class="m-0">@newItem.BookTitle</p>
+                    <h3 class="m-0"><span>R</span>@newItem.BookPrice</h3>
+
+                </div>
+            </div>
+            <div class="item-btn">
+                <button disabled class="btn btn-success">New Item Selected</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="item-card">
+            <p class="bg-dark text-light rounded-1 py-2 px-3">
+                Product Details
+            </p>
+            <hr />
+            <div class="row">
+                <div class="col-6">
+                    <p class="rounded-1 py-1 px-2 bg-warning text-dark">
+                        Item To Be Replaced
+                    </p>
+                    <!--Details -->
+                    <div class="row">
+                        <div class="col-2">
+                            <p><b>Name</b></p>
+                        </div>
+                        <div class="col-1">:</div>
+                        <div class="col-9">@oldItem.BookTitle</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <p><b>Price</b></p>
+                        </div>
+                        <div class="col-1">:</div>
+                        <div class="col-9"><span>R</span>@oldItem.BookPrice</div>
+                    </div>
+                    <!--End Of Details-->
+                </div>
+                <div class="col-6">
+                    <p class="rounded-1 py-1 px-2 bg-dark text-warning">New Item</p>
+                    <!--Details -->
+                    <div class="row">
+                        <div class="col-2">
+                            <p><b>Name</b></p>
+                        </div>
+                        <div class="col-1">:</div>
+                        <div class="col-9">@newItem.BookTitle</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <p><b>Price</b></p>
+                        </div>
+                        <div class="col-1">:</div>
+                        <div class="col-9"><span>R</span>@newItem.BookPrice</div>
+                    </div>
+                    <!--End Of Details-->
+                </div>
+            </div>
+            <p class="bg-dark text-light rounded-1 py-2 px-3">Final Calculations</p>
+            <p></p>
+            <div class="row">
+                @if (oldItem.BookPrice > newItem.BookPrice)
+                {
+                    <div class="col-5"><p class="m-0 py-1">We owe you</p></div>
+                    <div class="col-1"><p class="m-0 py-1">:</p></div>
+                    <div class="col-5">
+                        <p class="px-2 py-1 bg-secondary m-0 text-light rounded-1">
+                            <span>R</span> @TotalOwe
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    if (oldItem.BookPrice < newItem.BookPrice)
+                    {
+                        <div class="col-5"><p class="m-0 py-1">Total Amount Due</p></div>
+                        <div class="col-1"><p class="m-0 py-1">:</p></div>
+                        <div class="col-5">
+                            <p class="px-2 py-1 bg-secondary m-0 text-light rounded-1">
+                                <span>R</span> @TotalAmountDue
+                            </p>
+                        </div>
+                    }
+                }
+            </div>
+            <hr class="mb-4" />
+            <div class="d-flex justify-content-start">
+                @if (oldItem.BookPrice > newItem.BookPrice)
+                {
+                    <a href="@Url.Action("ItemExchangeCompleted", "OrderManagement", new {orderID = order.OrderId, newID = newItem.BookId, oldID=oldItem.BookId, oweAmount = TotalOwe})" class="btn btn-success rounded-1">
+                        Complete Item Exchange
+                    </a>
+                }
+                else
+                {
+                    if (oldItem.BookPrice < newItem.BookPrice)
+                    {
+                        <a href="@Url.Action("ItemCheckout", "OrderManagement", new {orderID = order.OrderId, newID = newItem.BookId,  oldID=oldItem.BookId, totalAmount = TotalAmountDue})" class="btn btn-success rounded-1">
+                            Proceed to Checkout
+                        </a>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .image-wrapper {
+        height: 40vh;
+    }
+
+    .image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+</style>

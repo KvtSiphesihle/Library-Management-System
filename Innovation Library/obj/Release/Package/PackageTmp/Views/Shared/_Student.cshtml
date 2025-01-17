@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Innovation Library - Index</title>
+    <link rel="stylesheet" href="/Content/Assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Content/Assets/css/index.css" />
+    <link rel="stylesheet" href="/Content/Assets/css/student.css" />
+    <link rel="stylesheet" href="/Content/Assets/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="/Content/Assets/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="/Content/Assets/css/dataTables.dataTables.min.css" />
+</head>
+
+<body class="student">
+    <div class="body-wrapper ">
+
+        <!-- Body Content -->
+        <div class="body-content-wrapper student-wrapper">
+            <!-- Student Navigation-->
+            <div class="student-nav d-flex justify-content-between align-items-center">
+                <h5 class="logo p-0 m-0"><i class="fa fa-book"></i> Innovation Library</h5>
+                <ul class="d-flex list-unstyled">
+                    <li><a href="@Url.Action("Index", "Home")" class="active-student-link">Home</a></li>
+                    <li><a href="@Url.Action("Dashboard", "Student")">Dashboard</a></li>
+                    <li><a href="@Url.Action("PurchaseHistory", "Student")">Purchase History</a></li>
+                    <li><a href="@Url.Action("HiringHistory", "Hiring")">Hiring</a></li>
+                    <li><a href="@Url.Action("Bookings", "Booking")">Room Bookings</a></li>
+                    <li><a href="@Url.Action("Fines", "Student")">Fines</a></li>
+                </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="student-btn stu-btn-primary">Sign Out <i class="fa fa-sign-out-alt"></i></a>
+                    }
+
+                }
+
+            </div>
+            <!-- End Student Navigation-->
+            <div class="student-dashboard-content mt-3">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- Body Content Ends -->
+    </div>
+    <script src="/Content/Assets/js/jquery.min.js"></script>
+    <script src="/Content/Assets/js/jquery.dataTables.min.js"></script>
+    <script src="/Content/Assets/js/dataTables.bootstrap.min.js"></script>
+    <script src="/Content/Assets/js/all.min.js"></script>
+    <script src="/Content/Assets/js/index.js"></script>
+    <script src="/Content/Assets/js/bootstrap.min.js"></script>
+    <script src="/Content/Assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let table = $("#recent-borrows")
+            table.DataTable();
+        })
+    </script>
+</body>
+
+</html>

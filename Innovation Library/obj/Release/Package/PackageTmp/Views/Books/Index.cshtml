@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Innovation_Library.Models.Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Book Title</th>
+            <th>Book Price</th>
+            <th>Pages</th>
+            <th>Shelf No</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BookId</td>
+                <td>@item.BookTitle</td>
+                <td>@item.BookPrice</td>
+                <td>@item.NoOfPages</td>
+                <td>@item.ShelfNo</td>
+                <td>@item.Quantity</td>
+                <td>
+                    <div class="d-flex">
+                        <a href="@Url.Action("Delete", "Books", new { id=item.BookId})" class="btn btn-danger" style="margin-left:6px;">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

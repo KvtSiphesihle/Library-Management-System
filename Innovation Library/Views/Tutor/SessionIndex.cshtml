@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Innovation_Library.Models.LearningContent>
+@{
+    ViewBag.Title = "SessionIndex";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Sessions";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>YouTube Link</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.LearningContentId</td>
+            <td>@item.YouTubeLink</td>
+            <td>@item.StartTime</td>
+            <td>@item.EndTime</td>
+            <td>
+                <a href="@Url.Action("DeleteAnnouncement", "Tutor", new {id=item.LearningContentId})" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+

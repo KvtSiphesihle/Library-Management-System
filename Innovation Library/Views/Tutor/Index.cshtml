@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Innovation_Library.Models.Tutor>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Tutor";
+}
+<div class="my-2">
+    <a href="@Url.Action("RegisterTutor", "Tutor")" class="btn btn-primary">New Tutor</a>
+</div>
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Registration No</th>
+            <th>Email Address</th>
+            <th>Name</th>
+            <th>Phone</th>
+            @*<th>Action</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TutorId</td>
+                <td>@item.RegistrationNumber</td>
+                <td>@item.EmailAddress</td>
+                <td>@item.Name</td>
+                <td>@item.PhoneNumber</td>
+                @*<td>
+                    @using (Html.BeginForm("AssignDuty", "Driver", FormMethod.Post))
+                    {
+                        <input type="hidden" name="UserId" value="@item.UserId" />
+                        <button class="btn btn-dark" type="submit">Assign Duty</button>
+                    }
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

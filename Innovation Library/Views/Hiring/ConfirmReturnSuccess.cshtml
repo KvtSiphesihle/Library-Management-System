@@ -1,0 +1,29 @@
+﻿@model Innovation_Library.Models.Hiring
+@{
+    ViewBag.Title = "ConfirmReturnSuccess";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Confirm Return Success";
+}
+
+<hr />
+<p class="text-success">The requested server response was successful.</p>
+@{
+    if (Model.BillStatus == "Waiting For Fines")
+    {
+        <h4 class="alert alert-danger"><i class="fa fa-times"></i><span class="mx-1"></span>The following student was fined, due to returning of a damaged item.</h4>
+    }
+    else
+    {
+        if (Model.BillStatus == "Returned")
+        {
+            <h4 class="alert alert-success"><i class="fa fa-check-circle"></i><span class="mx-1"></span>Inspection requirements met, the item was successfully returned with (0) errors.</h4>
+        }
+        else if (Model.BillStatus == "Returned [inc Fine Bill]")
+        {
+            <h4 class="alert alert-success"><i class="fa fa-check-circle"></i><span class="mx-1"></span>Fines payment has been processed, the student item will be allowed.</h4>
+        }
+    }
+}
+
+<a href="@Url.Action("Hirings", "Hiring")">View All Hirings</a>
+

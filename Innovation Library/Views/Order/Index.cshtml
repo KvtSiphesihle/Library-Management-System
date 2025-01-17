@@ -1,0 +1,74 @@
+﻿@using Innovation_Library.Models;
+@model IEnumerable<Innovation_Library.Models.Order>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Current Orders";
+    ApplicationDbContext _db = new ApplicationDbContext();
+
+    var className = "m-0 px-2 py-1 badge";
+
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Order No</th>
+            <th>Order Date</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Delivery State</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            if (item.IsCancelled)
+            {
+                className += " badge-danger";
+            }
+            else
+            {
+                className += " badge-success";
+            }
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.OrderNo</td>
+                <td>@item.OrderDate</td>
+                <td>@item.Address</td>
+                <td><p class="@className">@item.Status </p></td>
+                <td>
+                    @if (item.AssignedDriverId == null && !item.IsCancelled)
+                    {
+                        <p class="@className">Waiting For Driver</p>
+                    }
+                    else if (item.IsCancelled)
+                    {
+                        <p class="@className">Unavailable</p>
+                    }
+                    else
+                    {
+                        /**/
+                        var Driver = _db.Drivers.Where(d => d.UserId == item.AssignedDriverId).FirstOrDefault();
+                        if (Driver != null)
+                        {
+                            <p><b>@Driver.Name</b> is handling the delivery</p>
+                        }
+
+
+                    }
+                </td>
+                <td>
+                    <div class="d-flex">
+                        <a href="@Url.Action("Details", "Order", new { id=item.OrderId})" class="btn btn-primary" style="margin-left:6px;">Details</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

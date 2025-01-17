@@ -1,0 +1,46 @@
+﻿@model Innovation_Library.Models.Hiring
+@{
+    ViewBag.Title = "PendingPayment";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Pending payment";
+}
+
+<hr />
+<p class="text-danger"><b>Oops!</b> we can't process this request due to pending payment of the hired item.</p>
+<div class="mt-3">
+    <div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="m-0">Hiring Date</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="m-0">: @Model.HireDate</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="m-0">Reference No</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="m-0">: @Model.ReferenceNo</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="m-0">Amount Due</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="m-0">: R @Model.HireTotalAmount</p>
+                </div>
+            </div>
+        </div>
+        <hr />
+        @using (Html.BeginForm("RequestPayment", "Admin", FormMethod.Post))
+        {
+            <input type="hidden" name="id" value="@Model.HiringId" />
+            <button class="mt-2 btn btn-success">Request Payment</button>
+        }
+    </div>
+</div>
+

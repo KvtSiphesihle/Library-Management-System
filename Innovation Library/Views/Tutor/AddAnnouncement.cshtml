@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "AddAnnouncement";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Add Announcement";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Announcement Title</label>
+            <input type="text" name="AnnouncementTitle" placeholder="Title" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Announcement Text</label>
+            <input type="text" name="AnnouncementText" placeholder="Announcement Text" class="form-control" />
+        </div>
+        <div class="form-group mt-2">
+            <button class="btn btn-primary" type="submit">Save Announcement</button>
+        </div>
+    </div>
+}
+

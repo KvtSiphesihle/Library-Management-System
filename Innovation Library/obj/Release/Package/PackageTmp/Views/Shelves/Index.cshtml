@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Innovation_Library.Models.Shelves>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "All Shelves";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Shelf No</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+                <td>
+                    <div class="d-flex">
+                        <a href="@Url.Action("Delete", "Shelves", new { id=item.ShelfId})" class="btn btn-danger" style="margin-left:6px;">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "ScanRefCard";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Scanner";
+}
+
+<div style="width: 500px;" id="reader"></div>
+<div>
+    @using (Html.BeginForm("AcceptHireRequest", "Admin", FormMethod.Post, new { id="item-hire-form"}))
+    {
+        <input type="hidden" name="RefNo" id="RefNo" value="" />
+    }
+</div>
+<script src="~/Content/Assets/js/jquery.min.js"></script>
+<script src="~/Content/Assets/js/html5-qrcode.min.js"></script>
+<script>
+    let refNo = document.getElementById("RefNo");
+    function onScanSuccess(decodedText, decodeResult) {
+        console.log(`Scan Result: ${decodeResult, decodedText}`);
+        refNo.value = decodedText;
+        document.getElementById("item-hire-form").submit();
+    }
+
+    var html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", { fps: 10, qrbox: 250 }
+    );
+    html5QrcodeScanner.render(onScanSuccess);
+</script>
+

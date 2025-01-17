@@ -1,0 +1,110 @@
+﻿@model Innovation_Library.Models.LearningContent
+@using Innovation_Library.Models
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@{
+    ViewBag.Title = "SessionDetails";
+    Layout = "~/Views/Shared/_Student.cshtml";
+    ApplicationDbContext _db = new ApplicationDbContext();
+    Tutor tutor = _db.Tutors.Where(st => st.UserId == Model.UserId).FirstOrDefault();
+
+}
+
+<div class="student-dash-title">
+    <h6>Innovation Libary Learn - @Model.Title</h6>
+</div>
+<p class="my-2 mx-0">Learn more from our experienced tutors.</p>
+<hr>
+<div class="session__details">
+    <div class="session__cover">
+        <img src="/@Model.SessionCover" alt="">
+    </div>
+    <div class="session__full__details">
+        <div class="bd_radius px-3 py-2 mb-2 bg-dark text-light">
+            <p class="m-0">Session Details</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="m-0">Host</p>
+            </div>
+            <div class="col-md-8">
+                <p class="m-0"> : @tutor.Name</p>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-md-4">
+                <p class="m-0">YouTube url</p>
+            </div>
+            <div class="col-md-8">
+                <p class="m-0"> : <a href="@Model.YouTubeLink">@Model.YouTubeLink</a></p>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-md-4">
+                <p class="m-0">Start DateTime & End DateTime</p>
+            </div>
+            <div class="col-md-8">
+                <p class="m-0"> : @Model.StartTime - @Model.EndTime</p>
+            </div>
+        </div>
+        <!-- Description -->
+        <div class="session__description">
+            <p class="m-0 desc__title">Description</p>
+            <div class="description__wrapper">
+                <p>@Model.Description</p>
+            </div>
+        </div>
+        <!-- Action -->
+        <a href="@Model.YouTubeLink" class="btn btn-primary mt-2">Launch session</a>
+    </div>
+</div>
+<hr>
+<div class="comments mt-4">
+    <div class="bd__radius d-flex bg-dark p-1 text-light justify-content-between">
+        <p class="m-0 py-1 px-2">Comments</p>
+        <p class="m-0 py-1 px-2"><b>@Model.ContentComments.Count</b> Comments</p>
+    </div>
+    <div class="my-3"></div>
+    @if (Model.ContentComments.Count > 0)
+    {
+        foreach (var item in Model.ContentComments.OrderByDescending(item=>item.CommentedAt))
+        {
+            Student student = _db.Students.Where(s => s.StudentGuid == item.Id).FirstOrDefault();
+            <div class="comment__card">
+                <div class="user__name">@@<b>@student.StudentName</b></div>
+                <p class="m-0 py-1">
+                    @item.CommentText
+                </p>
+                <hr class="my-1">
+                <div class="d-flex  justify-content-between align-items-center">
+                    <small>Commented on @item.CommentedAt</small>
+                    @if (User.Identity.GetUserId() == item.Id)
+                    {
+                        <a href="@Url.Action("DeleteCommentSession", "Tutor", new {id=item.CommentId})" class="btn btn-danger btn-sm mt-2">Delete<i class="fa fa-trash-can"></i></a>
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="comment__card">
+            <p>No comments at a moment.</p>
+        </div>
+    }
+    <hr />
+    @using (Html.BeginForm("CommentSession", "Tutor", FormMethod.Post))
+    {
+        <div class="col-md-6 mt-2">
+            <input type="hidden" name="SessionID" value="@Model.LearningContentId" />
+            <div class="form-group">
+                <label>Comment</label>
+                <input type="text" class="form-control" name="CommentText" placeholder="Comment here..." />
+            </div>
+            <button class="btn btn-primary mt-2" type="submit">Comment</button>
+        </div>
+    }
+</div>
+
+

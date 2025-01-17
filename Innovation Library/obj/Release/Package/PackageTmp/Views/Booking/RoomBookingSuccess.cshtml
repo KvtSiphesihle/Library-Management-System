@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "RoomBookingSuccess";
+    Layout = "~/Views/Shared/_RoomsLayout.cshtml";
+}
+
+<div class="mt-3">
+    <h4>Room Booking Success</h4>
+    <hr />
+</div>
+<div class="alert-box">
+    <div class="col-md-7">
+        <p class="alert alert-success">Booking process completed</p>
+    </div>
+    <p>Hooray !! , You've successfully booked a room.</p>
+    <a class="btn inno-btn" href="@Url.Action("Bookings", "Booking")">View My Bookings</a>
+</div>
+
+<style>
+    .alert-box{
+        padding: 30px;
+        
+    }
+</style>

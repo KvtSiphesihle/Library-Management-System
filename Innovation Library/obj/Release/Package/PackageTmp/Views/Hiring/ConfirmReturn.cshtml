@@ -1,0 +1,99 @@
+﻿@model Innovation_Library.Models.Hiring
+@{
+    ViewBag.Title = "ConfirmReturn";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Confirm return.";
+}
+
+<div>
+    <h4>Inspection Page</h4>
+    <p>Welcome to <b>Innovation Library</b> Inspection</p>
+    <hr />
+    <p><b>Note</b> Use the below listing to verify if the item is still in good condition or damaged, student will be billed for damaged items.</p>
+
+    @using (Html.BeginForm("PaymentRequest", "Hiring"))
+    {
+        <ol>
+            <li>Is the item returned in time ? @Html.CheckBox("IsReturnedOnTime", false) </li>
+            <li>Is the item still in its original packaging ? @Html.CheckBox("IsOriginalPackaged", false) </li>
+            <li>Is the item turning on ? @Html.CheckBox("IsWorking", false) </li>
+            <li>Is the item scratched in any way ? @Html.CheckBox("IsScratched", false) </li>
+            <li>Is there any water damage or signs ? @Html.CheckBox("IsWaterDamaged", false) </li>
+        </ol>
+
+        <h5 class="p-2 bg-dark my-2 text-white">Innovation Library Billing Info</h5>
+        <p><b>BANK DETAILS</b></p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p>Absa Branch</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p> : 60068</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p>Account number</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p> : 935678917</p>
+                    </div>
+                </div>
+            </div>
+            <!--Column-->
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p>Account holder</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p> : Innovation Library</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p>Reference</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p> : 935678917</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <div>
+            <div class="form-group">
+                <label>Bill amount</label>
+                <input type="number" name="BillAmount" value="" placeholder="1300,00" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Notes</label>
+                <textarea class="form-control" name="Notes" id="text-area"></textarea>
+            </div>
+        </div>
+        <input type="hidden" name="id" value="@Model.HiringId" />
+        <button class="btn btn-secondary" type="submit">Pay <span class="mx-1"></span><i class="fa fa-dollar-sign"></i></button>
+        <span class="mx-2"></span>
+
+    }
+    <hr />
+    <div class="mt-2">
+        <p>Confirm that everything is in a good condition.</p>
+        @using (Html.BeginForm("ConfirmReturn", "Hiring"))
+        {
+
+            <input type="hidden" name="id" value="@Model.HiringId" />
+            <button class="btn btn-success" type="submit">Confirm return <span class="mx-1"></span><i class="fa fa-check-circle"></i></button>
+        }
+    </div>
+</div>
+    <style>
+        textarea {
+            height: 50vh;
+            border-radius: 0 !important;
+            resize: none !important;
+        }
+    </style>

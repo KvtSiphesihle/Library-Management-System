@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Innovation_Library.Models.Refund>
+@{
+    ViewBag.Title = "Refunds";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Refunds Requests";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Account Holder Name</th>
+            <th>Account Number</th>
+            <th>Refund Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.RefundID</td>
+                <td>@item.AccountHolderName</td>
+                <td>@item.AccountNumber</td>
+                <td>R @item.RefundAmount</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

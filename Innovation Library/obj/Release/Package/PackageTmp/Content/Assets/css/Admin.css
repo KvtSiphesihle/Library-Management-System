@@ -1,0 +1,12 @@
+﻿@font-face {
+    font-family: montserrat-regular;
+    src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Kanit;
+    src: url(../fonts/Kanit-Regular.ttf);
+}
+h1,h2,h3,h4,h5,h6,p ,footer{
+    font-family: "Kanit" !important;
+}

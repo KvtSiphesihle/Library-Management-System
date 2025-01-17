@@ -1,0 +1,19 @@
+﻿@model Innovation_Library.Models.Book
+@{
+    ViewBag.Title = "Restock";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Restock";
+}
+
+<p class="mb-2">Re-stock books</p>
+<div class="col-md-4">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <label>Quantity</label>
+            @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control", @placeholder = "20" })
+        </div>
+        <button class="btn btn-dark" type="submit">Restock</button>
+    }
+
+</div>

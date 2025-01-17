@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Innovation_Library.Models.BookRequest>
+@{
+    ViewBag.Title = "BookRequests";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Book Requests";
+}
+
+<table id="book-requests" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication Year</th>
+            <th>Status</th>
+            <th>Request Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.BookTitle</td>
+                <td>@item.Author</td>
+                <td>@item.PublicationYear</td>
+                <td>@item.Status</td>
+                <td>@item.RequestDate</td>
+                <td>
+                    <div class="d-flex">
+                        @if (!item.IsRequestApproved)
+                        {
+                            <a href="@Url.Action("ApproveRequest", "Admin", new { id = item.Id })" class="btn btn-primary">Approve</a>
+                            <span class="px-1"></span>
+                            <a href="@Url.Action("ApproveRequest", "Admin", new { id = item.Id })" class="btn btn-danger">Decline</a>
+                        }
+                        <a href="@Url.Action("AdminBorrowerDetails", "Library", new { id=item.Id})" class="btn btn-success" style="margin-left:6px;">Details</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        let table = $("#book-requests")
+        table.DataTable();
+    })
+</script>

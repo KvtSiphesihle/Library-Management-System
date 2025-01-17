@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Innovation_Library.Models.ItemExchange>
+@{
+    ViewBag.Title = "ItemExchangeReports";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Item Exchange Reports";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Order Number</th>
+            <th>Item Name</th>
+            <th>Item Price</th>
+            <th>Exchange Type</th>
+            <th>Exchange Reason</th>
+            <th>Exchange Other Reason</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ItemExchangeID</td>
+                <td>@item.OrderNo</td>
+                <td>@item.ItemName</td>
+                <td>R @item.ItemPrice</td>
+
+                <td>@item.ExchangeType</td>
+                <td>@item.ExchangeReason</td>
+                @if (item.ExchangeOtherReason != "")
+                {
+                    <td>@item.ExchangeOtherReason</td>
+                }
+                else
+                {
+                    /**/
+                    <td>
+                        <p class="m-0 px-2 py-1 badge badge-danger">Unavailable</p>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+

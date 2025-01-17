@@ -1,0 +1,75 @@
+﻿@using Innovation_Library.Models
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "ExchangeItem";
+    Layout = "~/Views/Shared/_Student.cshtml";
+
+    ApplicationDbContext _db = new ApplicationDbContext();
+
+    var UserId = User.Identity.GetUserId();
+    var StudentOrders = _db.Orders.Where(st => st.CustomerId == UserId).ToList();
+    var index = 0;
+}
+<div class="student-dash-title">
+    <h6>Item Exchange</h6>
+</div>
+<div class="bg-light p-3 mt-3">
+    <p>We are very sorry for any mistake we may have caused, we'll guide you through the whole process.</p>
+    <hr class="divider-line-order" />
+    <div class="row-vl">
+        <div class="exchange-form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <p class="text-danger">@ViewBag.Error</p>
+                <div style="display:flex; flex-direction:column">
+                    <label style="text-align: left">Order Number</label>
+                    @*<input type="text" name="OrderNo" autocomplete="off" maxlength="6" placeholder="XC34C9"  />*@                    @*<input type="text" name="OrderNo" autocomplete="off" maxlength="6" placeholder="XC34C9"  />*@
+                    <select name="OrderNo" class="form-control">
+                        <option selected value="">Select Order Number</option>
+                        @foreach (var item in StudentOrders)
+                        {
+                            index += 1;
+                            <option value="@item.OrderNo">@index -- @item.OrderNo</option>
+                        }
+                    </select>
+                </div>
+                <div class="mt-2">
+                    <button class="student-btn stu-btn-primary mt-2">Verify My Order</button>
+                </div>
+            }
+        </div>
+        <div class="_icon">
+            <i class="fa fa-exchange" style="font-size:40px; margin-bottom: 8px" aria-hidden="true"></i>
+            <p>Exchange made simple..</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .row-vl {
+        display: flex;
+        align-items: center;
+    }
+    /*    ._icon {
+        background: red;
+    }*/
+    .divider-line-order {
+        opacity: .3;
+        margin: 10px 0 3px 0;
+    }
+
+    .bg-light {
+        background: white;
+        padding: 30px;
+        border: 1px solid rgb(206, 206, 206);
+    }
+
+    .exchange-form {
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+</style>

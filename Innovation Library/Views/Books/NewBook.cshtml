@@ -1,0 +1,101 @@
+﻿@model Innovation_Library.Models.Book
+@{
+    ViewBag.Title = "NewBook";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "New Book";
+}
+
+<div class="room-form">
+    @using (Html.BeginForm("NewBook", "Books", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <p>Add New Book</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label class="label">Book Title</label>
+                    <input name="BookTitle" class="form-control" type="text" placeholder="Introduction to JS" />
+                </div>
+                <div class="form-group mb-2">
+                    <label class="label">Book Price</label>
+                    @Html.TextBoxFor(model => model.BookPrice, new { @class = "form-control", @placeholder = "R120.00" })
+                </div>
+                <div class="form-group mb-2">
+                    <label class="label">Category</label>
+                    @Html.DropDownListFor(m => m.Category, ViewBag.Categories as SelectList, "-- Select Category --", new { @class = "form-control", @id = "drop" })
+                </div>
+                <div class="form-group mb-2">
+                    <label class="label">Shelf No</label>
+                    @Html.DropDownListFor(m => m.ShelfNo, ViewBag.ShelfNo as SelectList, "-- Select Shelf No --", new { @class = "form-control", @id = "drop" })
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Row No</label>
+                    <select name="Row" class="form-control" id="drop">
+                        <option value="">-- Select Row No --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <div>
+                        @Html.ValidationMessageFor(m => m.Row, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="label">Quantity</label>
+                    <input name="Quantity" class="form-control" type="number" placeholder="10" />
+                </div>
+                <div class="form-group mb-3">
+                    <label class="label">Publisher</label>
+                    <input name="Publisher" class="form-control" type="text" placeholder="JetBrains Inc" />
+                </div>
+                <div class="form-group mb-3">
+                    <label class="label">PublishedDate</label>
+                    <input name="PublishedDate" class="form-control" type="date" placeholder="JetBrains Inc" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="label">ISBN</label>
+                    <input name="ISBN" class="form-control" type="text" placeholder="SDx67bLPj899" />
+                </div>
+                <div class="form-group mb-3">
+                    <label class="label">Author</label>
+                    <input name="Author" class="form-control" type="text" placeholder="Bill Gates" />
+                </div>
+                <div class="form-group mb-3">
+                    <label class="label">No Of Pages</label>
+                    <input name="NoOfPages" class="form-control" type="number" placeholder="10" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label class="label">Book Image</label>
+                    <input name="ImageFile" class="form-control image-File text-black" type="file" />
+                </div>
+                <div class="form-group mb-2">
+                    <label class="label">Book Image</label>
+                    <textarea name="Description" class="text-area" placeholder="Book Description Here.."></textarea>
+                </div>
+                <div class="form-group mb-2">
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        Save Book
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+<style>
+    .text-area{
+        width: 100%;
+        height: 120px;
+        resize: none;
+        border: 1px solid grey;
+        border-radius: 4px;
+        padding: 10px;
+        outline: none;
+    }
+</style>

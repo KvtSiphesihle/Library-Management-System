@@ -1,0 +1,87 @@
+﻿@using Innovation_Library.Models;
+@model IEnumerable<Innovation_Library.Models.Hiring>
+@{
+    ViewBag.Title = "HiringHistory";
+    Layout = "~/Views/Shared/_Student.cshtml";
+
+    ApplicationDbContext _db = new ApplicationDbContext();
+}
+
+<link rel="stylesheet" href="/Content/Assets/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="/Content/Assets/css/dataTables.bootstrap5.min.css" />
+<link rel="stylesheet" href="/Content/Assets/css/dataTables.dataTables.min.css" />
+
+<div class="student-dash-title">
+    <h6>Hiring History</h6>
+</div>
+<p class="my-4 mx-0">This is all <b>previous</b> hirings at a moment.</p>
+<div class="table-wrapper">
+    <table id="hiring-history" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Hire Date</th>
+                <th>Days</th>
+                <th>Exp. Return</th>
+                <th>Bill Status</th>
+                <th>Bill Amount</th>
+                <th>Ref No</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                HireItems _hireItem = _db.HireItems.Find(item.ItemId);
+                <tr>
+                    <td>@item.HiringId</td>
+                    <td>@item.HireDate</td>
+                    <td>@item.NoOfDays</td>
+                    <td>@item.ExpectedReturn</td>
+                    <td>
+                        @item.BillStatus
+                    </td>
+                    <td>R @item.HireTotalAmount</td>
+                    <td>@item.ReferenceNo</td>
+                    <td>
+                        <div class="d-flex">
+                            @if (!item.IsPayed)
+                            {
+                                double TotalAmt = item.HireTotalAmount;
+                                string url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (TotalAmt / 15.55) + "&business=carltechnologies@gmail.com&item_name=" + ViewBag.ItemName + "&return=https://2023group37.azurewebsites.net/Payment/Index";
+                                <a href="@url" class="bt-table secondary-card">Pay Now</a>
+                            }
+                            @using (Html.BeginForm("GenerateHireReport", "Hiring", FormMethod.Post))
+                            {
+                                <input type="hidden" name="id" value="@item.HiringId" />
+                                <button class="bt-table mx-1 warning-card">Download Ref</button>
+                            }
+                            @{
+                                if (item.BillStatus == "Waiting For Fines")
+                                {
+                                    using (Html.BeginForm("DownloadInspectionReport", "Hiring", FormMethod.Post))
+                                    {
+                                        <input type="hidden" name="id" value="@item.HiringId" />
+                                        <button type="submit" class="bt-table mx-1 warning-card">Inspection Ref</button>
+                                    }
+                                }
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script src="/Content/Assets/js/jquery.min.js"></script>
+<script src="/Content/Assets/js/jquery.dataTables.min.js"></script>
+<script src="/Content/Assets/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let table = $("#hiring-history")
+        table.DataTable();
+    })
+</script>
+

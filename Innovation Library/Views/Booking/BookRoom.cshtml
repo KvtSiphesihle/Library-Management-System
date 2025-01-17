@@ -1,0 +1,102 @@
+﻿@model Innovation_Library.Models.Room
+@{
+    ViewBag.Title = "BookRoom";
+    Layout = "~/Views/Shared/_RoomsLayout.cshtml";
+}
+
+<div class="rooms-list">
+    <h4>Book Room</h4>
+    <div class="mt-3">
+        <p class="bg-dark rounded-1 px-3 py-2 text-white">Room Detials</p>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="room-image-wrapper">
+                    <img src="/@Model.Image" alt="Alternate Text" />
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-5">
+                        <p class="m-0">Room Status</p>
+                    </div>
+                    <div class="col-4">
+                        @if (Model.isAvailable)
+                        {
+                            <p class="m-0 px-2 room-status available">Available</p>
+                        }
+                        else if (!Model.isAvailable)
+                        {
+                            <p class="m-0 px-2 room-status unavailable">Unvailable</p>
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <p class="m-0">Room Name</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="m-0"> : @Model.RoomName</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-5">
+                        <p class="m-0">Capacity</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="m-0"> : @Model.Capacity</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-5">
+                        <p class="m-0">
+                            TableDesk
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <p class="m-0"> : @Model.TableDesk</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-5">
+                        <p class="m-0">
+                            Whiteboard
+                        </p>
+                    </div>
+                    <div class="col-4">
+                        <p class="m-0"> : @Model.Whiteboard</p>
+                    </div>
+                </div>
+                <p class="text-danger my-2">@ViewBag.BookedSlot</p>
+                <div class="col-md-7">
+                    @using (Html.BeginForm("BookRoom", "Booking", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <label class="form-label">Start Date</label>
+                            <input type="date" name="StartDate" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Start Time</label>
+                            <input type="time" name="StartTime" class="form-control" />
+                        </div>
+                        <input type="hidden" name="RoomId" value="@Model.RoomId" />
+                        <button class="btn mt-4 bg-dark text-white inno-btn">Confirm Reserve</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .room-image-wrapper{
+        height: 300px;
+    }
+    .room-image-wrapper img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>

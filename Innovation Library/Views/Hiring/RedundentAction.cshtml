@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "RedundentAction";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Request Failed";
+}
+
+<hr />
+<p class="text-danger">The inspection for this hiring has been performed, it cannot be performed twice</p>
+<a href="@Url.Action("Hirings", "Hiring")">Go back</a>
+

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "OrderPaymentSuccess";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="mt-3">Order Payment Success</h5>
+<div class="order-filling-tracker">
+    <div class="icon-circle">
+        <i class="fa fa-shopping-cart"></i>
+        <small class="circle-status"><i class="fa fa-check"></i></small>
+    </div>
+    <div class="icon-circle">
+        <i class="fa fa-user"></i>
+        <small class="circle-status"><i class="fa fa-check"></i></small>
+    </div>
+    <div class="icon-circle">
+        <i class="fa fa-dollar-sign"></i>
+        <small class="circle-status"><i class="fa fa-check"></i></small>
+    </div>
+    <div class="tracker-line"></div>
+</div>
+<p class="mt-5">Thank you for shopping with "<b>Innovation Library</b>"</p>
+<p>Your payment has been received.</p>
+<hr />
+<a href="@Url.Action("UserOrders", "Order")" class="btn btn-primary">View Orders</a>
+

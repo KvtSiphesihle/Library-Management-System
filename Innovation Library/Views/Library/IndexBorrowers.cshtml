@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Innovation_Library.Models.Borrower>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Borrowers";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Borr. Date</th>
+            <th>Expec. Return Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BorrowerId</td>
+                <td>@item.BookTitle</td>
+                <td>@item.Author</td>
+                <td>@item.BorrowedDate</td>
+                <td>@item.ExpectedReturnDate</td>
+                <td>@item.Status</td>
+                <td>
+                    <div class="d-flex">
+                        @if (!item.IsAccepted)
+                        {
+                            <a href="@Url.Action("ApproveRequest", "Admin", new { id = item.BorrowerId })" class="btn btn-primary">Approve</a>
+                        }
+                        <a href="@Url.Action("AdminBorrowerDetails", "Library", new { id=item.BorrowerId})" class="btn btn-success" style="margin-left:6px;">Details</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

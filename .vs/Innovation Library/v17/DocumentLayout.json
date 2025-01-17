@@ -1,0 +1,102 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F62C5-4B58-4D23-87AB-2C363F920985}|Innovation Library\\Innovation Library.csproj|c:\\users\\27631\\pictures\\criterion games\\anime\\innovation library\\innovation library\\innovation library\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F62C5-4B58-4D23-87AB-2C363F920985}|Innovation Library\\Innovation Library.csproj|solutionrelative:innovation library\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F62C5-4B58-4D23-87AB-2C363F920985}|Innovation Library\\Innovation Library.csproj|c:\\users\\27631\\pictures\\criterion games\\anime\\innovation library\\innovation library\\innovation library\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA3F62C5-4B58-4D23-87AB-2C363F920985}|Innovation Library\\Innovation Library.csproj|solutionrelative:innovation library\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F62C5-4B58-4D23-87AB-2C363F920985}|Innovation Library\\Innovation Library.csproj|C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\innovation library\\views\\event\\eventsindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA3F62C5-4B58-4D23-87AB-2C363F920985}|Innovation Library\\Innovation Library.csproj|solutionrelative:innovation library\\views\\event\\eventsindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F62C5-4B58-4D23-87AB-2C363F920985}|Innovation Library\\Innovation Library.csproj|C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\innovation library\\views\\event\\reserveticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA3F62C5-4B58-4D23-87AB-2C363F920985}|Innovation Library\\Innovation Library.csproj|solutionrelative:innovation library\\views\\event\\reserveticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA3F62C5-4B58-4D23-87AB-2C363F920985}|Innovation Library\\Innovation Library.csproj|C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\innovation library\\views\\event\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA3F62C5-4B58-4D23-87AB-2C363F920985}|Innovation Library\\Innovation Library.csproj|solutionrelative:innovation library\\views\\event\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\Innovation Library\\Startup.cs",
+              "RelativeDocumentMoniker": "Innovation Library\\Startup.cs",
+              "ToolTip": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\Innovation Library\\Startup.cs",
+              "RelativeToolTip": "Innovation Library\\Startup.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAABIAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-05T00:25:48.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReserveTicket.cshtml",
+              "DocumentMoniker": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\Innovation Library\\Views\\Event\\ReserveTicket.cshtml",
+              "RelativeDocumentMoniker": "Innovation Library\\Views\\Event\\ReserveTicket.cshtml",
+              "ToolTip": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\Innovation Library\\Views\\Event\\ReserveTicket.cshtml",
+              "RelativeToolTip": "Innovation Library\\Views\\Event\\ReserveTicket.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAADMAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002242|",
+              "WhenOpened": "2024-12-11T09:48:05.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\Innovation Library\\Views\\Event\\Index.cshtml",
+              "RelativeDocumentMoniker": "Innovation Library\\Views\\Event\\Index.cshtml",
+              "ToolTip": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\Innovation Library\\Views\\Event\\Index.cshtml",
+              "RelativeToolTip": "Innovation Library\\Views\\Event\\Index.cshtml",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAmwEoAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002242|",
+              "WhenOpened": "2024-12-11T09:48:25.399Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EventsIndex.cshtml",
+              "DocumentMoniker": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\Innovation Library\\Views\\Event\\EventsIndex.cshtml",
+              "RelativeDocumentMoniker": "Innovation Library\\Views\\Event\\EventsIndex.cshtml",
+              "ToolTip": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\Innovation Library\\Views\\Event\\EventsIndex.cshtml",
+              "RelativeToolTip": "Innovation Library\\Views\\Event\\EventsIndex.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACYAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002242|",
+              "WhenOpened": "2024-12-11T09:48:25.404Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EventController.cs",
+              "DocumentMoniker": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\Innovation Library\\Controllers\\EventController.cs",
+              "RelativeDocumentMoniker": "Innovation Library\\Controllers\\EventController.cs",
+              "ToolTip": "C:\\Users\\27631\\Pictures\\Criterion Games\\ANIME\\Innovation Library\\Innovation Library\\Innovation Library\\Controllers\\EventController.cs",
+              "RelativeToolTip": "Innovation Library\\Controllers\\EventController.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAswEwAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-11T09:48:51.743Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

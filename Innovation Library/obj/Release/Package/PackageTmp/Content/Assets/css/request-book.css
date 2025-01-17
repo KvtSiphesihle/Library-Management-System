@@ -1,0 +1,73 @@
+:root {
+  --bodyPadding: 4%;
+  --baseColor: #6931d1;
+  --secondaryColor: #4c1aa8;
+  --accentColor: #e2e2e2;
+}
+.request-book-title {
+  background: rgb(78, 78, 78);
+  border-radius: 2px;
+  border-bottom: 4px solid black;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}
+.request-book-title h5 {
+  color: white;
+  margin: 0 !important;
+  padding: 12px 8px !important;
+}
+.books-request {
+  padding: 8px !important;
+  border: 1px solid rgb(189, 189, 189);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top: none;
+}
+.book-request-badge {
+  background: rgb(212, 212, 212);
+  padding: 4px 10px !important;
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}
+.request-book-input {
+  display: block;
+  width: 100% !important;
+  height: 35px;
+  border: none;
+  outline: none;
+  border: 1px solid #4c1aa8;
+  background: #eae2f8;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  padding: 0 14px;
+}
+.request-book-form {
+  padding: 8px !important;
+  background: #d4d4d4;
+  position: relative;
+  border: 1px solid #bdbdbd;
+  padding-top: 26px !important;
+}
+.btn-request-book {
+  height: 35px;
+  outline: none;
+  background: #2c2c2c;
+  color: white;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border: none;
+  padding: 0 20px !important;
+  border: 1px solid black;
+}

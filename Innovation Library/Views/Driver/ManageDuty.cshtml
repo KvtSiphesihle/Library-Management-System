@@ -1,0 +1,220 @@
+﻿@model Innovation_Library.Models.Order
+@{
+    ViewBag.Title = "ManageDuty";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Manage Duty";
+}
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                <p class="card-title">Order Information</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Order Number</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text"> : @Model.OrderNo</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Shipping Address</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text"> : @Model.Address</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Status</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text"> : @Model.Status</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Amount Due</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text"> : R @Model.Total</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                <p class="card-title">Customer Information</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Full name</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text"> : @Model.FirstName @Model.LastName</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Email</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text"> : @Model.Email</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Shippping Address</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text"> : @Model.Address</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text">Phone</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text"> : @Model.Phone</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="bg-dark text-light p-0 px-3 py-2">Update Delivery Status</p>
+
+<div class="row">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Activate Pickup</h4>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Status State</p>
+                    </div>
+                    <div class="col-md-6">
+                        @if (Model.IsPicked)
+                        {
+                            <p class="text-success">Succeeded</p>
+                        }
+                        else
+                        {
+                            <p class="text-danger">Not Activated</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                @if (Model.IsPicked)
+                {
+                    <button disabled class="btn btn-success">Activate</button>
+                }
+                else
+                {
+                    using (Html.BeginForm("ActivatePickUp", "Driver", FormMethod.Post))
+                    {
+                        <input name="id" type="hidden" value="@Model.OrderId" />
+                        <button type="submit" class="btn btn-success">Activate</button>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Activate On Route</h4>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Status State</p>
+                    </div>
+                    <div class="col-md-6">
+                        @if (Model.IsOnRoute)
+                        {
+                            <p class="text-success">Succeeded</p>
+                        }
+                        else
+                        {
+                            <p class="text-danger">Not Activated</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                @if (Model.IsOnRoute)
+                {
+                    <button disabled class="btn btn-success">Activate</button>
+                }
+                else
+                {
+                    using (Html.BeginForm("ActivateOnRoute", "Driver", FormMethod.Post))
+                    {
+                        <input name="id" type="hidden" value="@Model.OrderId" />
+                        <button type="submit" class="btn btn-success">Activate</button>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Activate Order Arrival</h4>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Status State</p>
+                    </div>
+                    <div class="col-md-6">
+                        @if (Model.isDelivered)
+                        {
+                            <p class="text-success">Succeeded</p>
+                        }
+                        else
+                        {
+                            <p class="text-danger">Not Activated</p>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                @if (Model.isDelivered)
+                {
+                    <button disabled class="btn btn-success">Activate</button>
+                }
+                else
+                {
+                    using (Html.BeginForm("ActivateDelivered", "Driver", FormMethod.Post))
+                    {
+                        <input name="id" type="hidden" value="@Model.OrderId" />
+                        <button type="submit" class="btn btn-success">Activate</button>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.isDelivered)
+{
+    <p class="m-0">The order has been arrived and is ready for collection</p>
+}
+
+<a href="@Url.Action("Orders", "Driver")" class="btn btn-primary my-2">View All Orders</a>

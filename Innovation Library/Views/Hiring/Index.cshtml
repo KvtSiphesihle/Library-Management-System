@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Innovation_Library.Models.HireItems>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Hiring Items";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Item Name</th>
+            <th>Item Price</th>
+            <th>Item Quantity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ItemId</td>
+                <td>@item.ItemName</td>
+                <td>@item.ItemPrice</td>
+                <td>@item.ItemQuantity</td>
+                <td>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-danger" style="margin-left:6px;">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

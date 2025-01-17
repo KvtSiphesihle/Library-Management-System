@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/Assets/css/all.min.css" rel="stylesheet" />
+    <link href="~/Content/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Assets/css/payment.css" rel="stylesheet" />
+</head>
+<body>
+   
+    <div class="body-wrapper">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+        <div class="success-box">
+            <h3 class="text-center my-4 text-white">Innovation Library</h3>
+            <div class="payment-wrapper mt-4 d-flex align-items-center">
+                <p class="m-0">Payment</p>
+                <i class="fa fa-check-circle pay-con"></i>
+            </div>
+            <p class="text-white my-4">Your Payment has been processed successfully, thank you for your support.</p>
+            <hr />
+            <a href="@Url.Action("Dashboard", "Student")" class="btn btn-dark inno-btn">Back To Dashboard</a>
+            <p class="mt-3 text-white text-sm">Payment Secured By PayFast</p>
+        </div>
+    </div>
+    <script src="~/Content/Assets/js/all.min.js"></script>
+    <script src="~/Content/Assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

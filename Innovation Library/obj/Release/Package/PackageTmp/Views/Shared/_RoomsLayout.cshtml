@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Innovation Library - Rooms</title>
+    <link rel="stylesheet" href="/Content/Assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/Content/Assets/css/rooms.css" />
+    <link rel="stylesheet" href="/Content/Assets/css/index.css" />
+</head>
+
+<body>
+    <div class="body-wrapper">
+        <!-- Body Content -->
+        <div class="body-content-wrapper">
+            <nav>
+                <h2>Innovation Library</h2>
+                <p class="my-1 text-white text-center">Our duty is to provide better students services ,and intelligent content.</p>
+                <ul>
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("Rooms", "Library")">Rooms</a></li>
+                    <li><a href="@Url.Action("ItemsIndex", "Library")">Items Hire</a></li>
+                    <li><a href="#">Rooms Booking</a></li>
+                </ul>
+            </nav>
+            <!-- Rooms Header-->
+            @if (Request.Url.PathAndQuery == "/Library/Rooms")
+            {
+                <header class="rooms-header mt-2">
+                    <div class="libary-details pb-4 d-flex flex-column align-items-center">
+                        <h3 class="p-0 m-0">
+                            <span class="hour"></span> : <span class="minutes"></span> : <span class="second"></span> <span class="time-label"></span>
+                        </h3>
+                        <p class="p-0 m-0">Library hours : 07:30 AM - 11:00 PM</p>
+                    </div>
+                    <form action="/" class="pb-2">
+                        <div class="room-checking-form">
+                            <div class="row justify-content-between p-0 m-0">
+                                <div class="col-md-3 col-6">
+                                    <div class="room-f-group">
+                                        <label for="start-date">START DATE</label>
+                                        <input type="date" name="start-date" id="start-date" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="room-f-group">
+                                        <label for="start-time">START TIME</label>
+                                        <input type="time" name="start-time" id="start-time" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="room-f-group">
+                                        <label for="duration">DURATION</label>
+                                        <select name="duration" id="duration">
+                                            <option value="1">1 Hour</option>
+                                            <option value="2">2 Hours</option>
+                                            <option value="3">3 Hours</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="room-f-group">
+                                        <label for="">AVAILABILITY</label>
+                                        <button class="room-btn">PROCEED</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </header>
+            }
+        </div>
+        <!-- Rooms -->
+        @RenderBody()
+        <!-- Body Content Ends -->
+    </div>
+    <script src="/Content/Assets/js/all.min.js"></script>
+    <script>
+        let hour = document.querySelector(".hour");
+        let minutes = document.querySelector(".minutes");
+        let second = document.querySelector(".second");
+        let timeLabel = document.querySelector(".time-label");
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setInterval(showTime, 1000)
+        });
+
+        function showTime() {
+            let date = new Date();
+            hour.innerText = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+            minutes.innerText = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+            second.innerText = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+            if (date.getHours() < 12) {
+                timeLabel.innerText = "AM"
+            } else if (date.getHours() >= 12) {
+                timeLabel.innerText = "PM"
+            }
+        }
+    </script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/all.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

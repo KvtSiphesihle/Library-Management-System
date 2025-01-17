@@ -1,0 +1,64 @@
+﻿@using Innovation_Library.Models;
+@model IEnumerable<Innovation_Library.Models.Book>
+@{
+    ViewBag.Title = "ChooseItem";
+    Layout = "~/Views/Shared/_Student.cshtml";
+    var oldItem = Session["itemExchange"] as ItemExchange;
+    var Order = Session["Order"] as Order;
+}
+
+<div class="student-dash-title">
+    <h6>Available Items</h6>
+</div>
+<!-- Title Section -->
+<p class="exchange-vl m-0 my-3">
+    <i class="fa-solid fa-circle-exclamation"></i>
+    <b>Info</b> Please pick the item you want to replace with.
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 mb-md-0 mb-2">
+            <div class="item-card">
+                <div class="item-image">
+                    <div class="image-wrapper">
+                        <img src="/@item.Image" alt="" />
+                    </div>
+                    <div class="item-description p-2">
+                        <p class="m-0">@item.BookTitle</p>
+                        <h3 class="m-0"><span>R</span>@item.BookPrice</h3>
+                    </div>
+                </div>
+                @if (item.Quantity == 0)
+                {
+                    <div class="item-btn p-2">
+                        <button class="btn btn-success" disabled>Select Item</button>
+                        <span class="badge-vl"><b>@item.Quantity</b> Item(s) (<span class="text-danger">Out Of Stock</span>)</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="item-btn p-2">
+                        <a href="@Url.Action("ProcessExchange", new {newItemId = item.BookId, oldItemId = oldItem.ItemID, orderNo = Order.OrderNo})" class="btn btn-success rounded-1">Select Item</a>
+                        <span class="badge-vl"><b>@item.Quantity</b> Item(s) Remaining</span>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .item-card{
+        border: 1px solid #a8a8a8
+    }
+    .image-wrapper {
+        height: 40vh;
+    }
+    .image-wrapper img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+</style>

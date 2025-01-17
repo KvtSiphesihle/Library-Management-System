@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Innovation_Library.Models.Booking>
+@{
+    ViewBag.Title = "Bookings";
+    Layout = "~/Views/Shared/_Student.cshtml";
+}
+
+<div class="student-dash-title">
+    <h6>Room Booking</h6>
+</div>
+<p class="my-4 mx-0">This is all of your <b>room bookings</b>.</p>
+<div class="table-wrapper">
+    <table id="purchase-history" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Start Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.BookingId</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.StartTime</td>
+                    <td>@item.DelayTime</td>
+                    <td>@item.Status</td>
+                    <td>
+                        <a class="btn btn-dark" href="#">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script src="/Content/Assets/js/jquery.min.js"></script>
+<script src="/Content/Assets/js/jquery.dataTables.min.js"></script>
+<script src="/Content/Assets/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let table = $("#purchase-history")
+        table.DataTable();
+    })
+</script>
+

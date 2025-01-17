@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Innovation_Library.Models.OrderExchange>
+@{
+    ViewBag.Title = "OrderExchangeReports";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Order Exchange Reports";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Order Number</th>
+            <th>Exchange Type</th>
+            <th>Exchange Reason</th>
+            <th>Exchange Other Reason</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderExchangeId</td>
+                <td>@item.Order.OrderNo</td>
+                <td>@item.ExchangeType</td>
+                <td>@item.ExchangeReason</td>
+                @if (item.ExchangeOtherReason != "")
+                {
+                    <td>@item.ExchangeOtherReason</td>
+                }
+                else
+                {
+                    /**/
+                    <td> <p class="m-0 px-2 py-1 badge badge-danger">Unavailable</p></td>
+                }
+                <td>
+                    <a class="btn btn-primary" href="@Url.Action("Details", "Order", new { id=item.Order.OrderId})">View Order Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

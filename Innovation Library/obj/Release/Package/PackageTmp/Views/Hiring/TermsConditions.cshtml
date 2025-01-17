@@ -1,0 +1,81 @@
+﻿@model Innovation_Library.Models.HireItems
+@{
+    ViewBag.Title = "TermsConditions";
+    Layout = "~/Views/Shared/_Student.cshtml";
+}
+
+<h5 class="mt-2">Terms & Conditions</h5>
+<div class="my-2 mt-3 px-4 py-2" style="border-top:4px solid black;border:1px solid rgb(12, 116, 68); border-radius:3px; background:rgba(62, 232, 154, 0.35)">
+    <p>
+        The terms and conditions for hiring equipment can vary depending on the specific
+        equipment and the company providing the rental service. However, here are some general
+        terms and conditions that may be included in an equipment rental agreement:
+    </p>
+
+    <ol>
+        <li>
+            <b>Rental period</b>: The rental period will be clearly defined, including the start and
+            end date and time of the rental period. Any extensions to the rental period should be
+            agreed upon in writing.
+        </li>
+
+
+        <li>
+            <b>Payment</b>: The rental fee and any additional charges (such as delivery, setup, or cleaning fees)
+            will be clearly outlined. The method of payment and any required deposit or upfront
+            payment will also be specified.
+        </li>
+
+        <li>
+            <b>Equipment condition</b>: The equipment will be rented in good working condition and
+            will be free of defects. The renter will be responsible for inspecting the equipment
+            before and after the rental period and reporting any damages or defects to the rental
+            Library.
+        </li>
+
+        <li>
+            <b>Use of equipment</b>: The renter will be responsible for using the equipment in a safe and
+            appropriate manner, in accordance with any instructions or guidelines provided by
+            the rental Library. The equipment should only be used for its intended purpose and should
+            not be modified or altered in any way.
+        </li>
+
+        <li>
+            <b>Liability and insurance</b>: The renter will be responsible for any damage or loss to the
+            equipment during the rental period. The renter may be required to provide proof of
+            insurance or purchase insurance coverage through the rental Library.
+        </li>
+
+        <li>
+            <b>Return of equipment</b>: The renter will be responsible for returning the equipment to the
+            rental Library at the end of the rental period, in the same condition as it was rented.
+            Late fees may apply for equipment returned after the agreed-upon rental period.
+        </li>
+
+        <li>
+            <b>Termination</b>: The rental company may terminate the rental agreement at any time if
+            the renter breaches any of the terms and conditions, or if the equipment is used in a
+            manner that violates any laws or regulations.
+            
+        </li>
+        <li>
+            <b>Governing law</b>: The rental agreement will be governed by the laws of the jurisdiction
+            in which the rental Library is located.
+        </li>
+    </ol>
+
+    <p>
+        These are just some of the common terms and conditions that may be included in an
+        equipment rental agreement. It is important to carefully review and understand all terms
+        and conditions before signing an agreement to rent equipment.
+    </p>
+</div>
+<hr />
+<div class="mt-3">
+    @using (Html.BeginForm("AgreeTerms", "Hiring", FormMethod.Post))
+    {
+        <input type="hidden" name="id" value="@Model.ItemId" />
+        <button type="submit" class="btn btn-success">Agree</button>
+        <a class="btn btn-danger" href="@Url.Action("HiringError", "Hiring")">Disagree</a>
+    }
+</div>

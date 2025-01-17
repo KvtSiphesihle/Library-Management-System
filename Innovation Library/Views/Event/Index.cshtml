@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Innovation_Library.Models.Event>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Student.cshtml";
+}
+
+<style>
+    .badge-success{
+        background: rgb(19, 216, 44, 0.85);
+        border-radius: 4px;
+    }
+    .badge-danger {
+        background: rgb(243, 10, 10, 0.87);
+        border-radius: 4px;
+    }
+</style>
+<div class="student-dash-title">
+    <h6>Events & Progrms</h6>
+</div>
+<p class="my-2 mx-0">Get your ticket today as soon as possible.</p>
+
+@if (Model.Count() > 0)
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            var className = "";
+            int Percentage = (item.Tickets.Count() / item.NumberOfSeats) * 100;
+            if (Percentage > 40)
+            {
+                className = "badge-success";
+            }
+            else
+            {
+                className = "badge-danger";
+            }
+            <style>
+                .card{
+                    position: relative;
+                }
+                .card-cover {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1000;
+                }
+                .card-cross {
+                    width: 100%;
+                    height: 100%;
+                    background: rgb(16, 16, 16, 0.83);
+                    position: relative;
+                    display:flex;
+                    justify-content: center;
+                    align-items:center;
+                    font-size: 40px;
+                    flex-direction: column;
+                    color: #fff;
+                }
+                .card-cross h3{
+                    margin-top: 10px;
+                }
+                .cross .bar-1, .cross .bar-2 {
+                    width: 100%;
+                    height: 4px;
+                    background: black;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                }
+                .cross{
+                    width: 200px;
+                    height: 200px;
+                    position: relative;
+                }
+                .cross .bar-1 {
+                    transform: rotate(45deg) translateX(-50%) translateY(-50%);
+                }
+                .cross .bar-2 {
+                    transform: rotate(135deg) translateX(-50%) translateY(-50%);
+                }
+            </style>
+            <div class="col-md-4">
+                <div class="card">
+                    @if (item.IsTerminated)
+                    {
+                        <div class="card-cover">
+                            <div class="card-cross">
+                                <i class="fa fa-times"></i>
+                                <h3>Event Ended / Not Available</h3>
+                            </div>
+                        </div>
+                    }
+                    <div class="card-header">
+                        <p class="m-0">@item.Title</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <p class="m-0">Date</p>
+                            </div>
+                            <div class="col-7">
+                                <p class="m-0"> : @item.FullDate.ToLongDateString()</p>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-5">
+                                <p class="m-0">Time</p>
+                            </div>
+                            <div class="col-7">
+                                <p class="m-0"> : @item.FullDate.ToShortTimeString()</p>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-5">
+                                <p class="m-0">Seats</p>
+                            </div>
+                            <div class="col-7">
+                                <p class="m-0"> : @item.NumberOfSeats <b>Seats</b></p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div>
+                            @if (item.Tickets.Where(t => t.IsSoldOut == false).Count() > 0)
+                            {
+                                <p class="m-0"><b class="badge @className">@item.Tickets.Where(t => t.IsSoldOut == false).Count()</b> Of <b>@item.NumberOfSeats</b> Tickets Remaining</p>
+                            }
+                            else
+                            {
+                                <p class="text-danger m-0"><i class="fa fa-times"></i><span class="mx-2">Tickets sold out</span></p>
+                            }
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        @if (item.Tickets.Where(t => t.IsSoldOut == false).Count() > 0)
+                        {
+                            <a class="btn btn-primary" href="@Url.Action("ReserveTicket", "Event", new {id=item.EventID})">Reserve Ticket</a>
+                        }
+                        else
+                        {
+                            <button disabled class="btn btn-primary">Reserve Ticket</button>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}else
+{
+    <h2>No event(s) available at a moment.</h2>
+}

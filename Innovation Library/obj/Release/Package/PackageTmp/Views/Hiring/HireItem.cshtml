@@ -1,0 +1,47 @@
+﻿@model Innovation_Library.Models.HireItems
+@{
+    ViewBag.Title = "HireItem";
+    Layout = "~/Views/Shared/_RoomsLayout.cshtml";
+}
+
+<hr />
+
+<div class="d-flex justify-content-between align-items-center">
+    <h4 class="my-2">Hire <b>"@Model.ItemName"</b> for R <b>@Model.ItemPrice</b> per day?</h4>
+    <a class="text-danger" href="@Url.Action("ItemsIndex", "Library")">Cancel Request</a>
+</div>
+<div class="my-2">
+    <img src="/@Model.Image" class="hire-image" width="250" alt="Alternate Text" />
+</div>
+<hr />
+<p class="my-4">Please fill with the required details to finish your item hire request.</p>
+<div class="hire-item-details  p-2">
+    @using (Html.BeginForm("HireItemDetails", "Hiring", FormMethod.Post, new { role = "form" }))
+    {
+        <input type="hidden" name="id" value="@Model.ItemId" />
+        <div class="row">
+            <div class="col-2">
+                <p class="my-0">Hire Date</p>
+            </div>
+            <div class="col-3">
+                <input class="w-100 form-control" type="date" name="HireDate" />
+            </div>
+            <div class="col-2">
+                <p class="my-0">No Of Days</p>
+            </div>
+            <div class="col-3">
+                <input class="w-100 form-control" placeholder="2 Days" type="number" name="NoOfDays" />
+            </div>
+            <div class="col-2">
+                <button type="submit" class="inno-btn bg-dark w-100 text-white" style="box-shadow: none;">Submit Data</button>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .hire-image{
+        border: 1px solid grey;
+        border-radius: 4px;
+    }
+</style>

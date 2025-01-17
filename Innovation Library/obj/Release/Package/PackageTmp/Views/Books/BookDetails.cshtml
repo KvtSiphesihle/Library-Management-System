@@ -1,0 +1,146 @@
+﻿@model Innovation_Library.Models.Book
+@{
+    ViewBag.Title = "BookDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="book-details-title mt-3">
+    <h5>Book Details</h5>
+</div>
+<div class="book-details-wrapper">
+    <div class="row p-0 m-0">
+        <div class="col-md-4">
+            <div class="book-details-image">
+                <img src="/@Model.Image" alt="">
+            </div>
+        </div>
+        <div class="col-md-8 d-md-flex align-items-md-center">
+            <div class="book-details-content w-100 my-3 mt-md-0 px-3 py-4">
+                <h4 class="book-details-book-title">@Model.BookTitle</h4>
+                <p class="book-details-author">By <b>@Model.Author</b></p>
+                <div class="book-details-ratings">
+                    <span><i class="fa fa-star"></i></span>
+                    <span><i class="fa fa-star"></i></span>
+                    <span><i class="fa fa-star"></i></span>
+                    <span><i class="fa fa-star"></i></span>
+                    <span><i class="fa fa-star"></i></span>
+                </div>
+                <div class="book-details-description py-2">
+                    @if (Model.Description != null || Model.Description == "")
+                    {
+                        <p>@Model.Description</p>
+                    }
+                    else
+                    {
+                        if (Model.Description == "" || Model.Description == null)
+                        {
+                            <p class="text-danger">No Description Found!</p>
+                        }
+                    }
+                </div>
+                <div class="book-details-details">
+                    <div class="row mb-3">
+                        <div class="col-5"><span class="details-label">Publisher</span></div>
+                        <div class="col-7"><span class="details-value">@Model.Publisher</span></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-5"><span class="details-label">Published Date</span></div>
+                        <div class="col-7"><span class="details-value">@Model.PublishedDate</span></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-5"><span class="details-label">ISBN</span></div>
+                        <div class="col-7"><span class="details-value">@Model.ISBN</span></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-5"><span class="details-label">Pages</span></div>
+                        <div class="col-7"><span class="details-value">@Model.NoOfPages Pages</span></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-5">
+                            <span class="details-label"><i class="fa fa-eye"></i></span>
+                        </div>
+                        <div class="col-7"><span class="details-value">7584 Views</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Review Book -->
+<div class="row">
+    <div class="col-md-6 py-3 mt-3">
+        <h5 class="review-title">Student's Reviews</h5>
+        <div class="reviews">
+            <div class="review mb-3">
+                <div class="row m-0 review-wrapper align-items-center mb-3 p-2 rounded-1">
+                    <div class="col-6">
+                        <div class="profile-pic"><i class="fa fa-user"></i></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="review-rate d-flex justify-content-end">
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-message">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut nisi
+                    exercitationem cum quas animi. Dignissimos iure temporibus neque blanditiis ex. Quos,
+                    eius harum iure accusamus aut
+                </p>
+                <p class="reviewed-by">By <b>Sanele Zikhali</b></p>
+            </div>
+            <div class="review mb-3">
+                <div class="row m-0 review-wrapper align-items-center mb-3 p-2 rounded-1">
+                    <div class="col-6">
+                        <div class="profile-pic"><i class="fa fa-user"></i></div>
+                    </div>
+                    <div class="col-6">
+                        <div class="review-rate d-flex justify-content-end">
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                            <span><i class="fa fa-star"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <p class="review-message">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut nisi
+                    exercitationem cum quas animi. Dignissimos iure temporibus neque blanditiis ex. Quos,
+                    eius harum iure accusamus aut
+                </p>
+                <p class="reviewed-by">By <b>Sanele Zikhali</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 py-3 mt-3">
+        <h5 class="review-title">Write Review</h5>
+        <div class="write-review">
+            <textarea name="" id="review" cols="30" rows="10"
+                      placeholder="Write your review here.."></textarea>
+            <p>Your review is important, please rate the book.</p>
+            <div class="row align-items-center">
+                <div class="col-6">
+                    <div class="write-review-rating">
+                        <span class="rate-icon" aria-label="1" id="star-1"><i class="fa fa-star"></i></span>
+                        <span class="rate-icon" aria-label="2" id="star-2"><i class="fa fa-star"></i></span>
+                        <span class="rate-icon" aria-label="3" id="star-3"><i class="fa fa-star"></i></span>
+                        <span class="rate-icon" aria-label="4" id="star-4"><i class="fa fa-star"></i></span>
+                        <span class="rate-icon" aria-label="5" id="star-5"><i class="fa fa-star"></i></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <p class="m-0 rounded-1 py-1 text-end text-dark text-center">
+                        <span class="starCount text-danger">0</span> / 5
+                    </p>
+                </div>
+            </div>
+            <hr class="mt-0">
+            <button>Submit Review</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@using Innovation_Library.Models;
+@model Innovation_Library.Models.Hiring
+@{
+    ViewBag.Title = "Hired";
+    Layout = "~/Views/Shared/_RoomsLayout.cshtml";
+
+    ApplicationDbContext _db = new ApplicationDbContext();
+    int id = Model.ItemId;
+    HireItems _item = _db.HireItems.Find(id);
+
+}
+
+<hr />
+<h5 class="my-2 text-success">Request Success !</h5>
+<hr />
+<p class="my-2 alert alert-success">Your <b>"@ViewBag.ItemName" Hire Request</b> has been processed successfully, 
+    please use this reference card when collecting the item, also complete payment for the request to be considered.</p>
+<div class="hire-item-details p-2">
+    <div class="row align-items-center">
+        <div class="col-md-3">
+            <div class="hire-item-details-image">
+                <img src="/@ViewBag.Image" alt="">
+            </div>
+        </div>
+        <div class="col-md-9">
+            <p class="bg-dark py-2 px-4 rounded-1 text-white">Hire Information</p>
+            <div class="alert alert-info">Your reference document will be sent via email "@Model.StudentEmail" check your inbox after payment..</div>
+            <div class="row">
+                <div class="col-6"><b>Reference Number</b></div>
+                <div class="col-6"><span class="item-detail-value">@Model.ReferenceNo</span></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6"><b>No Of Day(s)</b></div>
+                <div class="col-6"><span class="item-detail-value">@Model.NoOfDays</span></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6"><b>Expected Return Date</b></div>
+                <div class="col-6"><span class="item-detail-value">@Model.ExpectedReturn</span></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6"><b>Total Price Amount</b></div>
+                <div class="col-6"><span class="item-detail-value"> R @Model.HireTotalAmount</span></div>
+            </div>
+            <hr>
+            <div class="d-flex align-items-center justify-content-between">
+                @{
+                    string return_url = Url.Action("Index", "Payment");
+                    string cancel_url = Url.Action("Cancelled", "Payment");
+
+
+                    <form action="https://sandbox.payfast.co.za/eng/process" method="post">
+                        <input type="hidden" name="merchant_id" value="10026408" />
+                        <input type="hidden" name="merchant_key" value="n1ozkntqgi3bh" />
+                        <input type="hidden" name="return_url" value="https://2023group37.azurewebsites.net/Payment/Index" />
+                        <input type="hidden" name="cancel_url" value="" />
+                        <input type="hidden" name="amount" value="@Model.HireTotalAmount" />
+                        <input type="hidden" name="item_name" value="@_item.ItemName" />
+                        <button class="btn btn-dark" type="submit">Complete Payment</button>
+                    </form>
+                }
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>
+
+
+

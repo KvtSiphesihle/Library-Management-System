@@ -1,0 +1,107 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "User Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var UserEmail = User.Identity.Name;
+    var UserId = User.Identity.GetUserId();
+}
+
+<h5 class="mt-3">User Details</h5>
+<div class="order-filling-tracker">
+    <div class="icon-circle">
+        <i class="fa fa-shopping-cart"></i>
+        <small class="circle-status"><i class="fa fa-check"></i></small>
+    </div>
+    <div class="icon-circle">
+        <i class="fa fa-user"></i>
+        <small class="circle-status"><i class="fa fa-times"></i></small>
+    </div>
+    <div class="icon-circle">
+        <i class="fa fa-dollar-sign"></i>
+        <small class="circle-status"><i class="fa fa-times"></i></small>
+    </div>
+    <div class="tracker-line"></div>
+</div>
+<hr class="mt-5" />
+<p class="mt-4 mb-1">Please fill out the user details info.</p>
+<div class="user-details-form col-md-6">
+    @using (Html.BeginForm("SaveUserDetails", "ShoppingCart", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-split">
+            <div class="form-group">
+                <label for="first_name">First name</label>
+                <input type="text"
+                       name="FirstName"
+                       id="first_name"
+                       placeholder="First Name"
+                       class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last name</label>
+                <input type="text"
+                       name="LastName"
+                       id="last_name"
+                       class="form-control"
+                       placeholder="Last Name" />
+            </div>
+        </div>
+        <!-- Email -->
+        <div class="form-group mt-2">
+            <label for="address">Email Address</label>
+            <input type="text"
+                   name="Email"
+                   id="address"
+                   class="form-control"
+                   placeholder="Email Address" value="@UserEmail" disabled/>
+        </div>
+        <!-- Address -->
+        <address>
+            <div class="form-split mt-2">
+                <div class="form-group">
+                    <label for="shipping_address">Shipping Address</label>
+                    <input type="text"
+                           name="Address"
+                           id="shipping_address"
+                           class="form-control"
+                           placeholder="Shipping Address" />
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text"
+                           name="City"
+                           id="city"
+                           class="form-control"
+                           placeholder="City" />
+                </div>
+            </div>
+        </address>
+        <!-- Save Address -->
+        @*<small class="mt-1 mb-2 d-block">Save Address For Future Orders <button type="button" id="save-address" onclick="SaveAddress()"><b>Save Here</b></button></small>*@
+        <!-- Save Address Ends -->
+        <!-- Phone -->
+        <div class="form-group mt-3">
+            <label for="phone_number">Phone Number</label>
+            <input type="text"
+                   name="Phone"
+                   id="phone_number"
+                   class="form-control"
+                   placeholder="Phone Number" />
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">
+            Proceed <span class="mx-1"></span>
+            <i class="fa fa-chevron-right"></i>
+        </button>
+    }
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let address = $("#shipping_address").val();
+        let city = $("#city").val();
+
+        function SaveAddress() {
+            alert(address);
+        }
+    });
+</script>

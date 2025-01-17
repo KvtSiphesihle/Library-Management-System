@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Innovation_Library.Models.BookRequest>
+@{
+    ViewBag.Title = "IndexRequests";
+    Layout = "~/Views/Shared/_Student.cshtml";
+}
+
+<link rel="stylesheet" href="/Content/Assets/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="/Content/Assets/css/dataTables.bootstrap5.min.css" />
+<link rel="stylesheet" href="/Content/Assets/css/dataTables.dataTables.min.css" />
+
+<div class="student-dash-title">
+    <h6>My Book Requests</h6>
+</div>
+<p class="my-4 mx-0">All your <b>Requested</b> books at a moment.</p>
+<div class="table-wrapper">
+    <table id="book-requests" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Request Date</th>
+                <th>Publication Year</th>
+                <th>ISBN</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.BookTitle</td>
+                    <td>@item.Author</td>
+                    <td>@item.RequestDate</td>
+                    <td>@item.PublicationYear</td>
+                    <td>@item.ISBN</td>
+                    <td>
+                        <a href="#" class="bt-table danger-card">Cancel Request</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script src="/Content/Assets/js/jquery.min.js"></script>
+<script src="/Content/Assets/js/jquery.dataTables.min.js"></script>
+<script src="/Content/Assets/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let table = $("#book-requests")
+        table.DataTable();
+    })
+</script>
+

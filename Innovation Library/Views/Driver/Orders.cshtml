@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Innovation_Library.Models.Order>
+@{
+    ViewBag.Title = "Orders";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Order No</th>
+            <th>Email Address</th>
+            <th>Shipping Address</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.OrderNo</td>
+                <td>@item.Email</td>
+                <td>@item.Address</td>
+                <td>@item.Phone</td>
+                <td>@item.Status</td>
+                <td>
+                    <a class="btn btn-dark" href="@Url.Action("ManageDuty", "Driver", new {id=item.OrderId})">Manage Duty</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

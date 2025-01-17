@@ -1,0 +1,58 @@
+﻿
+@model IEnumerable<Innovation_Library.Models.Hiring>
+    @using Innovation_Library.Models;
+@{
+    ViewBag.Title = "Hirings";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Hirings";
+
+    var _db = new ApplicationDbContext();
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>HireDate</th>
+            <th>Status</th>
+            <th>Exp Return</th>
+            <th>Ref No</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            Student _student = _db.Students.Where(s => s.StudentGuid == item.StudentId).FirstOrDefault();
+            <tr>
+                <td>@item.HiringId</td>
+                <td>@_student.StudentName</td>
+                <td>@_student.Email</td>
+                <td>@item.HireDate</td>
+                <td>@item.BillStatus</td>
+                <td>@item.ExpectedReturn</td>
+                <td>@item.ReferenceNo</td>
+                <td>
+                    @{
+                        if (item.BillStatus == "Returned" || item.BillStatus == "Returned [inc Fine Bill]")
+                        {
+                            <button class="btn btn-primary" disabled>Complete</button>
+                        }
+                        else if (item.BillStatus == "Waiting For Fines")
+                        {
+                            <a class="btn btn-primary" href="@Url.Action("ConfirmItemFine", "Hiring", new { id=item.HiringId})">Confirm item Fine</a>
+                        }
+                        else if (item.BillStatus != "Waiting For Fines" || item.BillStatus != "Returned")
+                        {
+                            <a class="btn btn-primary" href="@Url.Action("ConfirmReturn", "Hiring", new { id=item.HiringId})">Confirm Return Item</a>
+                        }
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

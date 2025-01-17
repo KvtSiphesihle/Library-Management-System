@@ -1,0 +1,65 @@
+﻿@model Innovation_Library.Models.Event
+@{
+    ViewBag.Title = "ReserveTicket";
+    Layout = "~/Views/Shared/_Student.cshtml";
+}
+
+<style>
+    .details{
+        width: 300px;
+        border-left: 2px solid black;
+        padding: 6px 10px;
+    }
+</style>
+<div class="student-dash-title">
+    <h6>Events & Progrms -> Reserve <b>@Model.Title</b> ?</h6>
+</div>
+<p class="my-2 mx-0">Confirm ticket reservation.</p>
+<hr />
+<div class="card">
+    <div class="card-header">
+        <p class="m-0">@Model.Title</p>
+    </div>
+    <div class="card-body">
+        @{var pluralize = Model.Participants.Count() > 1 ? "Participants" : "Participant";}
+        <p><i class="fa fa-user-friends"></i><span class="mx-2 px-2 bg-dark text-light" style="border-radius:4px">@Model.Participants.Count()</span> @pluralize</p>
+        <p><b>Event Description</b></p>
+        <div class="details mb-1">
+            <p class="m-0">@Model.Description</p>
+        </div>
+        <p><b>Event Full Details</b></p>
+        <div class="row mt-2">
+            <div class="col-3">
+                <p class="m-0">Location</p>
+            </div>
+            <div class="col-7">
+                <p class="m-0"> : @Model.Location</p>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <p class="m-0">Requested Username</p>
+            </div>
+            <div class="col-7">
+                <p class="m-0"> : @User.Identity.Name</p>
+            </div>
+        </div>
+        <div>
+            @if (TempData["Error"] != null)
+            {
+                <hr>
+                <p class="text-danger m-0"><b>Oopa!</b> @TempData["Error"] and you can't reserve a ticket twice,</p>
+                <span><a href="@Url.Action("Index", "Event")">Go back to events</a></span>
+            }
+        </div>
+    </div>
+    <div class="card-footer"> 
+         @using (Html.BeginForm())
+         {
+             <input type="hidden" name="id" value="@Model.EventID" />
+             <button class="btn btn-dark" type="submit">Submit Reservation</button>
+         }
+    </div>
+</div>
+
+

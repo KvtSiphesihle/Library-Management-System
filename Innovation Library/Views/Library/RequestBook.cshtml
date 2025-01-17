@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "RequestBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="request-book-title mt-3">
+    <h5 class="p-0 m-0">Request Books</h5>
+</div>
+<div class="books-request">
+    <p class=" m-0 book-request-badge">
+        <b>Note</b> : To request that the library purchase a book or other
+        item, please
+        fill out the form below. Requests are considered weekly, and requestors will be notified when the
+        request has been approved.
+    </p>
+    <div class="request-book-form mt-2">
+        @using (Html.BeginForm("RequestBook", "Library", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-6 ">
+                    <!-- Author-->
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group w-100">
+                            <label for="Author" class="label">Author</label>
+                            <input type="text" name="Author" placeholder="John Doe" class="request-book-input">
+                        </div>
+                    </div>
+                    <!-- Book Title-->
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group w-100">
+                            <label for="Author" class="label">
+                                Book Title <span class="text-danger">(Required)</span>
+                            </label>
+                            <input type="text" name="BookTitle" placeholder="Introduction to Flutter" class="request-book-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- Author-->
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group w-100">
+                            <label for="Author" class="label">ISBN</label>
+                            <input type="text" name="ISBN" placeholder="8xCGbb990Ql68" class="request-book-input">
+                        </div>
+                    </div>
+                    <!-- Book Title-->
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group w-100">
+                            <label for="Author" class="label">Publication Year</label>
+                            <input type="text" placeholder="2021" name="PublicationYear" class="request-book-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-request-book">Request a book</button>
+        }
+    </div>
+</div>
+

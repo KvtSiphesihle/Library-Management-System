@@ -1,0 +1,71 @@
+﻿@model Innovation_Library.Models.Announcement
+@using Innovation_Library.Models
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@{
+    ViewBag.Title = "AnnouncementDetails";
+    Layout = "~/Views/Shared/_Student.cshtml";
+    ApplicationDbContext _db = new ApplicationDbContext();
+}
+
+<div class="student-dash-title">
+    <h6>Announcements</h6>
+</div>
+<p class="my-4 mx-0">See all details</p>
+<div class="announcement__section">
+    <div class="announcement__header">
+        <p class="m-0"><b>@Model.AnnouncementTitle</b></p>
+        <small class="m-0">Posted on <b>@Model.PostedDate</b></small>
+    </div>
+    <div class="single__announcement">
+        <p>@Model.AnnouncementText</p>
+    </div>
+    <div class="comments mt-4">
+        <div class="bd__radius d-flex bg-dark p-1 text-light justify-content-between">
+            <p class="m-0 py-1 px-2">Comments</p>
+            <p class="m-0 py-1 px-2"><b>@Model.AnnouncementComments.Count</b> Comments</p>
+        </div>
+        <div class="my-3"></div>
+        @if (Model.AnnouncementComments.Count > 0)
+        {
+            foreach (var item in Model.AnnouncementComments.OrderByDescending(i => i.CommentedAt))
+            {
+                Student student = _db.Students.Where(s => s.StudentGuid == item.Id).FirstOrDefault();
+                <div class="comment__card">
+                    <div class="user__name">@@<b>@student.StudentName</b></div>
+                    <p class="m-0 py-1">
+                        @item.CommentText
+                    </p>
+                    <hr class="my-1">
+                    <div class="d-flex  justify-content-between align-items-center">
+                        <small>Commented on @item.CommentedAt</small>
+                        @if (User.Identity.GetUserId() == item.Id)
+                        {
+                            <a href="@Url.Action("DeleteCommentAnnouncement", "Tutor", new {id=item.CommentId})" class="btn btn-danger btn-sm mt-2">Delete<i class="fa fa-trash-can"></i></a>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="comment__card">
+                <p>No comment available.</p>
+            </div>
+        }
+    </div>
+    <hr />
+    @using (Html.BeginForm("CommentAnnouncement", "Tutor", FormMethod.Post))
+    {
+        <div class="col-md-6 mt-2">
+            <input type="hidden" name="AnnouncementID" value="@Model.AnnouncementId" />
+            <div class="form-group">
+                <label>Comment</label>
+                <input type="text" class="form-control" name="CommentText" placeholder="Comment here..." />
+            </div>
+            <button class="btn btn-primary mt-2" type="submit">Comment</button>
+        </div>
+    }
+</div>
+

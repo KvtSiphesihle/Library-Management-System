@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Innovation_Library.Models.Order>
+@{
+    ViewBag.Title = "UserOrders";
+    Layout = "~/Views/Shared/_Student.cshtml";
+}
+
+<link rel="stylesheet" href="/Content/Assets/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="/Content/Assets/css/dataTables.bootstrap5.min.css" />
+<link rel="stylesheet" href="/Content/Assets/css/dataTables.dataTables.min.css" />
+
+<div class="student-dash-title">
+    <h6>My Orders</h6>
+</div>
+<div class="my-3">
+    <a class="btn btn-dark" href="@Url.Action("OrderTrackingCenter", "Order")">Order Tracking Center</a>
+    <a class="btn btn-success" href="@Url.Action("Index", "OrderManagement")">Manage Orders</a>
+</div>
+<p class="my-4 mx-0">These are all <b>completed & incomplete</b> orders at a moment.</p>
+<div class="table-wrapper">
+    <table id="orders" class="table table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Order No</th>
+                <th>Order Date</th>
+                <th>Shipping Address</th>
+                <th>Bill Status</th>
+                <th>Bill Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderId</td>
+                    <td>@item.OrderNo</td>
+                    <td>@item.OrderDate</td>
+                    <td>@item.Address</td>
+                    <td>
+                        @if (item.isPayed)
+                        {
+                            <p class="table-badge table-bagge-success m-0">Completed</p>
+                        }
+                        else if (!item.isPayed)
+                        {
+                            <p class="table-badge table-bagge-danger m-0">Incomplete</p>
+                        }
+                    </td>
+                    <td>R @item.Total</td>
+                    <td>
+                        @if (!item.isPayed)
+                        {
+                            <form action="https://sandbox.payfast.co.za/eng/process" method="post">
+                                <input type="hidden" name="merchant_id" value="10026408" />
+                                <input type="hidden" name="merchant_key" value="n1ozkntqgi3bh" />
+                                <input type="hidden" name="return_url" value="http://localhost:50462/ShoppingCart/OrderPaymentSuccess" />
+                                <input type="hidden" name="cancel_url" value="" />
+                                <input type="hidden" name="amount" value="@item.Total" />
+                                <input type="hidden" name="item_name" value="@item.OrderNo" />
+                                <button class="bt-table secondary-card" type="submit">Pay Now</button>
+                            </form>
+
+                        }
+                        else
+                        {
+                            <a href="#" class="bt-table warning-card">Receipt</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script src="/Content/Assets/js/jquery.min.js"></script>
+<script src="/Content/Assets/js/jquery.dataTables.min.js"></script>
+<script src="/Content/Assets/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let table = $("#orders")
+        table.DataTable();
+    })
+</script>
+

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Innovation_Library.Models.LearningContent>
+@{
+    ViewBag.Title = "InnoLearn";
+    Layout = "~/Views/Shared/_Student.cshtml";
+}
+
+<div class="student-dash-title">
+    <h6>Innovation Libary Learn</h6>
+</div>
+<p class="my-2 mx-0">Learn more from our experienced tutors.</p>
+<a class="btn btn-primary mb-3" href="@Url.Action("Slides", "Tutor")">View Learning Slides</a>
+<div class="inno__learn">
+    @foreach (var item in Model)
+    {
+        <div class="sessions__card">
+            <div class="session__header">
+                <p><b>@item.Title</b></p>
+            </div>
+            <div class="session__body">
+                <img src="@item.SessionCover" alt="">
+            </div>
+            <div class="session__action">
+                <a target="_blank" href="@item.YouTubeLink" class="btn btn-dark">Watch Session</a>
+                <a href="@Url.Action("SessionDetails", "Tutor", new {id=item.LearningContentId})" class="btn btn-success">See Full Details</a>
+            </div>
+        </div>
+    }
+</div>
+

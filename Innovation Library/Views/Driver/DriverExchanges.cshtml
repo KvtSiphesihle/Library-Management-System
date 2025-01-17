@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Innovation_Library.Models.Exchanges>
+@{
+    ViewBag.Title = "DriverExchanges";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Driver Items Exchanges";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Exchange Key</th>
+            <th>Exchange Time</th>
+            <th>Status</th>
+            <th>Amount Due</th>
+            <th>Shipping Address</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ExchangeId</td>
+                <td>@item.ExchangeKey</td>
+                <td>@item.ExchangeTime</td>
+                <td>@item.Status</td>
+                <td>R @item.AmountDue</td>
+                <td>@item.Order.Address</td>
+                <td>
+                    <div class="d-flex">
+                        <a href="@Url.Action("DriverExchangeDetails", "OrderManagement", new { id=item.ExchangeId})" class="btn btn-primary">View Details</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

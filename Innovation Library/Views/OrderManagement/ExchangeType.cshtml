@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "ExchangeType";
+    Layout = "~/Views/Shared/_Student.cshtml";
+}
+<div class="student-dash-title">
+    <h6>Exchange Type</h6>
+</div>
+<div class="bg-light mt-2 py-4 px-4">
+    <h4 class="m-0">Exchange Action</h4>
+    <p class="m-0">When returning an item, you have two options which is <b>refund</b> or <b>replace</b> Item</p>
+    <hr class="divider-line-order" />
+    <div class="d-flex justify-content-start">
+        @using (Html.BeginForm())
+        {
+            <input type="hidden" name="order_ID" value="@Session["order_id"]" />
+            <input type="hidden" name="item_ID" value="@Session["item_id"]" />
+            <div class="row-ex">
+                <div class="col-ex">
+                    <div class="d-flex flex-column">
+                        <label style="text-align: left">Exchange Type</label>
+                        <select class="form-control-c my-2" name="ExchangeOption">
+                            <option value=""> -- Please select Option --</option>
+                            <option value="Refund">Refund</option>
+                            @if (!Convert.ToBoolean(Session["NewOrderRequest"]))
+                            {
+                                <option value="Replace Item">Replace Item</option>
+                            }
+                            else
+                            {
+                                <option value="Replace Order">Replace Order</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <label style="text-align: left">Exchange Reason</label>
+                        <select class="form-control-c my-2" id="ExchangeReason" name="ExchangeReason">
+                            <option value=""> -- Please select Option --</option>
+                            @if (!Convert.ToBoolean(Session["NewOrderRequest"]))
+                            {
+                                <option value="Wrong item">Wrong item</option>
+                            }
+                            else
+                            {
+                                <option value="Wrong Order">Wrong Order</option>
+                            }
+                            <option value="Not prepared the way I instructed">Not prepared the way I instructed</option>
+                            <option value="Item damaged upon delivery<">Item damaged upon delivery</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-ex d-none" id="OtherReason" style="padding-left: 30px">
+                    <div class="d-flex flex-column">
+                        <label style="text-align: left">Exchange Reason</label>
+                        <textarea class="text-area" name="ExchangeOtherReason" placeholder="Describe your reason here..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:flex-start; width: 100%">
+                <button class="btn-c">
+                    Proceed
+                    <i class="fa fa-arrow-right-long"></i>
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .d-none {
+        display: none;
+    }
+
+    .row-ex {
+        display: flex;
+    }
+
+    .col-ex {
+        width: 50%;
+    }
+
+    .text-area {
+        margin-top: 4px;
+        width: 400px;
+        height: 18vh;
+        resize: none;
+        border: 1px solid black;
+        padding: 10px 14px;
+        border-radius: 2px;
+        outline: none;
+        background: rgb(237, 237, 237);
+    }
+
+    .form-control-c {
+        outline: none;
+        border: 1px solid black;
+        width: 400px;
+        font-size: 15px;
+        border-radius: 2px;
+        height: 40px;
+        background: rgb(237, 237, 237);
+        padding-left: 10px;
+        margin-top: 6px;
+    }
+
+    .btn-c {
+        width: 400px;
+        height: 40px;
+        background: black;
+        color: white;
+        border-radius: 2px;
+        font-size: 15px;
+        margin-top: 6px;
+        cursor: pointer;
+    }
+</style>
+<script src="~/Content/Assets/js/jquery.min.js"></script>
+<script>
+    $('#ExchangeReason').on('change', function () {
+        if ($(this).find(":selected").val() == "Other") {
+            $("#OtherReason").removeClass("d-none")
+        }
+        if ($(this).find(":selected").val() != "Other") {
+            $("#OtherReason").addClass("d-none")
+        }
+    });
+</script>
+

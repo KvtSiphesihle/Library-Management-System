@@ -1,0 +1,71 @@
+﻿@using Innovation_Library.Models
+@model Innovation_Library.Models.Borrower
+@{
+    ViewBag.Title = "AdminBorrowerDetails";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Borrowers";
+    ApplicationDbContext _db = new ApplicationDbContext();
+
+    Book _Book = _db.Books.Find(Model.AllocatedBookId);
+}
+
+<div class="row">
+    <div class="col-md-6 py-3">
+        <div class="row">
+            <div class="col-6">Student Name</div>
+            <div class="col-6"><b>: @Model.StudentName</b></div>
+        </div>
+        <div class="row">
+            <div class="col-6">Email</div>
+            <div class="col-6"><b>: @Model.Email</b></div>
+        </div>
+        <div class="row">
+            <div class="col-6">Borrowed Date</div>
+            <div class="col-6"><b>: @Model.BorrowedDate</b></div>
+        </div>
+        <div class="row my-1">
+            @if (Model.IsReturned)
+            {
+                <p class="alert alert-primary w-100"><b>Book Returned on @Model.ReturnedDate</b></p>
+            }
+            else if (!Model.IsReturned)
+            {
+                <p class="alert alert-danger"><b>Pending Return</b> Expected to be returned on <b>@Model.ExpectedReturnDate</b></p>
+            }
+        </div>
+        <div class="row">
+            <div class="col-6">Expected Return</div>
+            <div class="col-6"><b>: @Model.ExpectedReturnDate</b></div>
+        </div>
+        <div class="row">
+            <div class="col-6">ISBN</div>
+            <div class="col-6"><b>: @Model.ISBN</b></div>
+        </div>
+    </div>
+    <div class="col-md-6 mt-2 mt-md-0">
+        <p class="text-white bg-secondary p-2 rounded-1 mb-1">Book Info.</p>
+        <div class="row">
+            <div class="col-6">Book Title</div>
+            <div class="col-6"><b>: @_Book.BookTitle</b></div>
+        </div>
+        <div class="row">
+            <div class="col-6">Author</div>
+            <div class="col-6"><b>: @_Book.Author</b></div>
+        </div>
+        <div class="row">
+            <div class="col-6">Published Date</div>
+            <div class="col-6"><b>: @_Book.PublishedDate</b></div>
+        </div>
+        <div class="row">
+            <div class="col-6">Quantity</div>
+            <div class="col-6"><b>: @_Book.Quantity</b></div>
+        </div>
+        <hr class="col-primary">
+        <div class="my-2">
+            <a href="@Url.Action("IndexBorrowers", "Library")" class="btn btn-primary">
+                Back To Borrow Requests <i class="fa fa-check-double"></i>
+            </a>
+        </div>
+    </div>
+</div>
+

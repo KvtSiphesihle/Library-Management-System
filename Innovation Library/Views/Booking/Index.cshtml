@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Innovation_Library.Models.Booking>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Room Bookings";
+}
+
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Start Date</th>
+            <th>Start Time</th>
+            <th>Status</th>
+            <th>Signing Code</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BookingId</td>
+                <td>@item.StartDate</td>
+                <td>@item.StartTime</td>
+                <td>@item.Status</td>
+                <td>@item.SigningCode</td>
+                <td>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-success" style="margin-left:6px;">Details</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

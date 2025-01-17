@@ -1,0 +1,137 @@
+﻿.announcements__section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.slide-card{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+.slide-card p{
+    border-radius: 4px;
+}
+.card-icon{
+    font-size: 32px;
+}
+
+.btn {
+    border-radius: 0px !important;
+    box-shadow: none !important;
+}
+
+.announcement__card {
+    padding: 14px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #cacaca;
+}
+
+.single__announcement {
+    background: #dadada;
+    border-radius: 4px;
+    border: 1px solid #cacaca;
+    padding: 6px;
+    margin: 6px 0;
+}
+
+.comment__card {
+    background: #dadada;
+    border-radius: 4px;
+    border: 1px solid #cacaca;
+    padding: 6px;
+    margin-bottom: 10px !important;
+    border-top: 2px solid black;
+}
+
+.single__announcement p {
+    margin: 0;
+}
+
+.comment__card .user__name {
+    padding: 2px;
+    background: #c9c9c9;
+    border-radius: 4px;
+    border: 1px solid #bdbdbd;
+    font-weight: bolder;
+}
+
+.bd__radius {
+    border-radius: 4px;
+}
+
+.inno__learn {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.sessions__card {
+    padding: 10px;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1000;
+}
+
+    .sessions__card .session__header {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 4px 6px;
+        background: #c9c9c9;
+        border-bottom-right-radius: 4px;
+        border-bottom: 8px solid #ececec;
+        border-right: 8px solid #ececec;
+    }
+
+        .sessions__card .session__header p {
+            margin: 0;
+        }
+
+    .sessions__card .session__body {
+        height: 50vh;
+    }
+
+        .sessions__card .session__body img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+.session__action {
+    padding: 6px 0;
+}
+
+.session__details {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+}
+
+    .session__details .session__cover {
+        height: 50vh;
+    }
+
+        .session__details .session__cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+.session__description {
+    border: 1px solid #cacaca;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+    .session__description .desc__title {
+        font-weight: bolder;
+        background: #000;
+        padding: 4px 6px;
+        color: #fff;
+        margin-bottom: 16px !important;
+    }

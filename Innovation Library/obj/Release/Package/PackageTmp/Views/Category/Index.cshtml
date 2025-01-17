@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Innovation_Library.Models.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Categories";
+}
+
+<div class="mt-3">
+    <a class="btn btn-dark" href="@Url.Action("NewCategory","Category")">New Category</a>
+</div>
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

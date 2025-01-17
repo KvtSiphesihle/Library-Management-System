@@ -1,0 +1,62 @@
+﻿@model Innovation_Library.Models.Order
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Details";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <p class="px-3 py-2 mb-2 bg-dark text-light">User Details</p>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="m-0">Email</p>
+            </div>
+            <div class="col-md-6">
+                <p class="m-0">@Model.Email</p>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-md-6">
+                <p class="m-0">Fullname</p>
+            </div>
+            <div class="col-md-6">
+                <p class="m-0">@Model.FirstName @Model.LastName</p>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-md-6">
+                <p class="m-0">Phone Number</p>
+            </div>
+            <div class="col-md-6">
+                <p class="m-0">@Model.Phone</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h4 class="mb-2">Order Details</h4>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <rbody>
+                @foreach (var item in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td>@item.ProductPrice</td>
+                        <td>@item.Quantity</td>
+                    </tr>
+                }
+            </rbody>
+        </table>
+    </div>
+</div>
+
+<hr />
+
+<a class="btn btn-dark" href="@Url.Action("Index", "Order")">Back to Orders</a>

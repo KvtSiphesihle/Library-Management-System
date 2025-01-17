@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Innovation_Library.Models.Event>
+@{
+    ViewBag.Title = "EventsIndex";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Events";
+}
+
+<a class="btn btn-success my-2" href="@Url.Action("HostEvent", "Event")">Host Event</a>
+<table id="recent-borrows" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Tickets Available</th>
+            <th>Participants</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.FullDate.ToLongDateString()</td>
+                <td>@item.FullDate.ToShortTimeString()</td>
+                <td>
+                    @if (item.Tickets.Where(t => t.IsSoldOut == false).Count() > 0)
+                    {
+                        <p class="m-0">@item.Tickets.Where(t => t.IsSoldOut == false).Count()</p>
+                    }
+                    else
+                    {
+                        <span class="m-0 badge badge-danger">Sold Out</span>
+                    }
+                </td>
+                <td>@item.Participants.Count()</td>
+                <td>
+                    <div class="d-flex">
+                        <a href="@Url.Action("Terminate", "Event", new { id=item.EventID})" class="btn btn-danger" style="margin-left:6px;">Terminate Event</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

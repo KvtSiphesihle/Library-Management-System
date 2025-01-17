@@ -1,0 +1,213 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div class="show-case-wrapper">
+    <div class="row justify-content-between">
+        <div class="col-md-12">
+            <div class="show-case-image">
+                <p class="show-case-header">Executive Content</p>
+                <h3 class="show-case-heading">
+                    Discover Libraries full of content with our annual
+                    subscription.
+                </h3>
+                <p class="show-case-description my-3">
+                    Monthly subscription allows you to instantly get access to
+                    library of over thousand e-books and audio premium library
+                    also unlock the audiobook content which contains a lot of
+                    world known bestsellers.
+                </p>
+                <div class="show-case-btns">
+                    <button class="btn btn-light">Go Premium</button>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-5">
+            <div class="show-case-content">
+                <div class="show-case-content-header">
+                    <h5 class="m-0">Popular Authors</h5>
+                </div>
+                <div class="popular-author-list py-3">
+                    <!-- Authors-->
+                    <!--Author-->
+                    <div class="popular-author d-flex justify-content-between align-items-center">
+                        <div class="author-image">
+                            <img src="images/authors/author-1.jpg" alt="" />
+                        </div>
+                        <div class="author-details">
+                            <p class="m-0"><b>J Rowland</b></p>
+                            <p class="author-tagline">854 Reads</p>
+                        </div>
+                        <a href="#" class="view-author">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </div>
+                    <!-- End Of Author-->
+                    <hr class="author-divider" />
+                    <!-- Author-->
+                    <div class="popular-author d-flex justify-content-between align-items-center">
+                        <div class="author-image">
+                            <img src="images/authors/author-2.jpg" alt="" />
+                        </div>
+                        <div class="author-details">
+                            <p class="m-0"><b>J Rowland</b></p>
+                            <p class="author-tagline">854 Reads</p>
+                        </div>
+                        <a href="#" class="view-author">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </div>
+                    <!-- End Of author-->
+                    <hr class="author-divider" />
+                    <!-- Author -->
+                    <div class="popular-author d-flex justify-content-between align-items-center">
+                        <div class="author-image">
+                            <img src="images/authors/author-3.jpg" alt="" />
+                        </div>
+                        <div class="author-details">
+                            <p class="m-0"><b>J Rowland</b></p>
+                            <p class="author-tagline">854 Reads</p>
+                        </div>
+                        <a href="#" class="view-author">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </div>
+                    <!-- End Of Author-->
+                    <hr class="author-divider" />
+                    <!-- Author-->
+                    <div class="popular-author d-flex justify-content-between align-items-center">
+                        <div class="author-image">
+                            <img src="images/authors/author-4.jpg" alt="" />
+                        </div>
+                        <div class="author-details">
+                            <p class="m-0"><b>J Rowland</b></p>
+                            <p class="author-tagline">854 Reads</p>
+                        </div>
+                        <a href="#" class="view-author">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- End Of Author-->
+                <!-- See More Authors-->
+                <div class="d-flex justify-content-center py-1">
+                    <a href="#" class="inno-btn custom-btn-primary">See more authors</a>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</div>
+<!-- Books show case -->
+<div class="books-show-case">
+    <div class="books-show-case-text py-3">
+        <h5 class="text-center">
+            <b>
+                Browse huge
+                <span class="books-show-case-text-badge">Library</span> filled
+                with world bestsellers.
+            </b>
+        </h5>
+        <div class="pt-4 d-flex justify-content-center">
+            <a href="@Url.Action("Index", "Library")" class="btn btn-primary">See more books</a>
+        </div>
+    </div>
+</div>
+
+<div class="books-show-case-content py-4">
+    <!-- Books Modal-->
+    <div class="modal fade" id="booksModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">Books Modal</div>
+                    <a href="#" data-bs-dismiss="modal" class="close-btn"></a>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-image">
+                        <img src="/Content/Assets/images/books/Book1.jpg" alt="" />
+                    </div>
+                    <div class="modal-decription mt-3 d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="modal-book-title m-0">Book Title</p>
+                            <p class="modal-book-author m-0">By LeBron James</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <h4 class="book-price m-0"><b>$11.99</b></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="inno-btn custom-btn-secondary">Details</button>
+                    <button class="inno-btn custom-btn-primary">Purchase</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Of Books Modal-->
+    <div class="row justify-content-between">
+        <div class="col-md-2 col-sm-6">
+            <div class="book-card"
+                 data-bs-toggle="modal"
+                 data-bs-target="#booksModal">
+                <div class="card-image">
+                    <img src="/Content/Assets/images/books/book1.jpg" alt="" />
+                </div>
+                <div class="card-image-details">
+                    <div class="book-title"><p>Where the crawdads sing</p></div>
+                    <p class="book-author">By. <span>Author</span></p>
+                    <p class="book-subscription-status">Premium Content</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-6">
+            <div class="book-card">
+                <div class="card-image">
+                    <img src="/Content/Assets/images/books/book2.jpg" alt="" />
+                </div>
+                <div class="card-image-details">
+                    <div class="book-title"><p>Atomic Habit</p></div>
+                    <p class="book-author">By. <span>Author</span></p>
+                    <p class="book-subscription-status">Premium Content</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-6">
+            <div class="book-card">
+                <div class="card-image">
+                    <img src="/Content/Assets/images/books/book3.jpg" alt="" />
+                </div>
+                <div class="card-image-details">
+                    <div class="book-title">
+                        <p>The subtle art of not giving a fuck.</p>
+                    </div>
+                    <p class="book-author">By. <span>Author</span></p>
+                    <p class="book-purchase-status">Purchase for $11.99</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-6">
+            <div class="book-card">
+                <div class="card-image">
+                    <img src="/Content/Assets/images/books/book4.jpg" alt="" />
+                </div>
+                <div class="card-image-details">
+                    <div class="book-title"><p>I'm glad My Mom Died</p></div>
+                    <p class="book-author">By. <span>Author</span></p>
+                    <p class="book-subscription-status">Premium Content</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-6">
+            <div class="book-card">
+                <div class="card-image">
+                    <img src="/Content/Assets/images/books/book5.jpeg" alt="" />
+                </div>
+                <div class="card-image-details">
+                    <div class="book-title"><p>Crack The Code</p></div>
+                    <p class="book-author">By. <span>Author</span></p>
+                    <p class="book-subscription-status">Premium Content</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Of Books Showcase -->

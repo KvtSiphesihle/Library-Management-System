@@ -1,0 +1,16 @@
+﻿@model Innovation_Library.Models.LearningContent
+@{
+    ViewBag.Title = "DeleteSession";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Delete Session?";
+}
+
+@using (Html.BeginForm())
+{
+    <p>Are you sure to delete this?</p>
+    <div>
+        <button class="btn btn-danger" type="button">Delete</button>
+        <a class="btn btn-primary" href="@Url.Action("SessionIndex", "Tutor")">Cancel</a>
+    </div>
+}
+

@@ -1,0 +1,410 @@
+.student {
+  background: Teal !important;
+}
+.form-control {
+  box-shadow: none !important;
+  border-radius: 2px !important;
+  -webkit-border-radius: 2px !important;
+  -moz-border-radius: 2px !important;
+  -ms-border-radius: 2px !important;
+  -o-border-radius: 2px !important;
+  border-color: rgb(12, 163, 163) !important;
+}
+/* .student-wrapper * {
+  font-family: "Roboto Condensed" !important;
+} */
+.student-wrapper {
+  position: relative;
+}
+.student-btn {
+  padding: 6px 10px !important;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  color: white !important;
+  margin: 0 !important;
+  display: inline-block;
+}
+.bd-default{
+    border-radius: 3px;
+}
+.stu-btn-primary {
+  background: teal;
+  box-shadow: 0px 2px 2px rgb(17, 75, 75);
+}
+.stu-btn-secondary {
+  box-shadow: 0px 2px 2px rgb(37, 84, 170);
+  background: cornflowerblue;
+}
+.student-nav {
+  background: #e4e4e4;
+  padding: 16px !important;
+  border: 1px solid #c0c0c0;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-bottom: 2px solid teal;
+  position: sticky;
+  width: 100%;
+  left: 0%;
+  top: 2%;
+  z-index: 5000;
+  
+}
+.student-nav .logo {
+  color: teal;
+  font-weight: 400;
+}
+.student-nav ul {
+  list-style: none;
+}
+.student-nav li {
+  margin: 0 10px;
+  height: 40px;
+}
+.student-nav li a {
+  text-decoration: none;
+  color: black;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 4px solid transparent;
+}
+.student-nav li a:hover {
+  border-color: teal;
+  color: teal;
+}
+.active-student-link {
+  border-color: teal !important;
+  color: teal !important;
+}
+
+.student-dashboard-content {
+  background: rgb(233, 233, 233);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border: 1px solid #b8b8b8;
+  padding: 10px !important;
+}
+
+.student-profile-picture {
+  width: 100px;
+  border: 1px solid #008080c0;
+  height: 100px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  background: white;
+}
+.student-profile-picture img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.student-profile {
+  padding: 20px !important;
+  background: #00808041;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border: 1px solid #008080bd;
+}
+.student-account {
+  padding: 20px !important;
+  background: #00808041;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border: 1px solid #008080bd;
+}
+.student-account input {
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  padding: 0 10px !important;
+  height: 35px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border: 1px solid #00808091;
+}
+.student-profile-upload {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0 !important;
+}
+.student-profile-upload input {
+  width: 100px;
+  height: 30px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+.student-profile-upload ::-webkit-file-upload-button {
+  width: 100%;
+  font-size: 14px;
+  outline: none !important;
+  border: none;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  height: 35px;
+  background: transparent;
+  display: none;
+}
+.upload-pic {
+  border-radius: 3px !important;
+  -webkit-border-radius: 3px !important;
+  -moz-border-radius: 3px !important;
+  -ms-border-radius: 3px !important;
+  -o-border-radius: 3px !important;
+  border: 1px solid teal !important;
+}
+.upload-pic button {
+  height: 100%;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  outline: none;
+  border: none;
+  background: teal;
+  color: white;
+}
+.student-profile .tag {
+  font-size: 14px;
+  border-radius: 3px;
+  padding: 2px 8px !important;
+  background: rgba(255, 255, 255, 0.356);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.student-profile .student-name {
+  margin-bottom: 4px !important;
+  font-size: 22px !important;
+}
+.student-dashboard-statistics {
+  background: white;
+  height: 100%;
+  border: 1px solid rgb(214, 214, 214);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+/* Dashboard Stats Cards */
+.dashboard-card {
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 6px !important;
+  text-align: center;
+}
+.dashboard-card .card-counter {
+  font-size: 50px;
+  color: teal;
+}
+.card-icon {
+  font-size: 26px;
+}
+.primary-card {
+  background: #00808073;
+  border: 1px solid teal;
+}
+.col-primary {
+  color: #008080c9 !important;
+}
+.col-secondary {
+  color: #00228073 !important;
+}
+.col-danger {
+  color: #b42525be !important;
+}
+.col-warning {
+  color: #a38f1bd3 !important;
+}
+.secondary-card {
+  background: #00228073;
+  border: 1px solid #041852;
+}
+.danger-card {
+  background: #eb424273;
+  border: 1px solid #5c0808;
+}
+.warning-card {
+  background: #e6ca3180;
+  border: 1px solid rgb(109, 102, 0);
+}
+/* Student Recent Borrowa */
+.recent-borrows-title {
+  background: #00808093;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-top: 4px solid teal;
+}
+.recent-borrows-title h5 {
+  padding: 5px 8px;
+  color: rgb(65, 65, 65);
+}
+.student-recent-borrows {
+  padding: 4px 20px !important;
+}
+.bt-table {
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  text-decoration: none;
+  color: black !important;
+}
+
+/* Purchase History */
+.student-dash-title {
+  background: #2c2c2c93;
+  color: #ffffff;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}
+.table-wrapper {
+  margin-top: 10px !important;
+  max-height: 380px;
+  overflow-y: scroll;
+  padding: 10px 5px !important;
+}
+.table-wrapper .table {
+  border-color: #cccccc;
+  background: rgb(221, 221, 221);
+}
+.student-dash-title h6 {
+  margin: 0 !important;
+  padding: 8px 10px !important;
+}
+.table-badge {
+  font-size: 12px;
+  padding: 3px 5px !important;
+  text-align: center;
+  display: inline-block;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.table-bagge-success {
+  background: #00808073;
+}
+.table-badge-danger {
+  background: #eb424273;
+}
+/* Fines Payments */
+.book-fines-details {
+  padding: 8px !important;
+  border: 1px solid rgba(0, 128, 128, 0.5);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+/* Media Query */
+
+/* @media screen and (max-width: 710px) {
+  .student-nav {
+    flex-direction: column;
+  }
+  .student-nav ul {
+    background: #0080802c;
+    margin-top: 10px !important;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+  }
+  .student-nav .student-btn {
+    margin-top: 10px !important;
+  }
+} */
+
+@media screen and (max-width: 822px) {
+  .student-nav {
+    flex-direction: column;
+  }
+  .student-nav ul {
+    background: #0080802c;
+    margin-top: 10px !important;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+  }
+  .student-nav ul a {
+    font-size: 14px;
+  }
+  .student-btn {
+    font-size: 14px;
+  }
+  .student-nav .student-btn {
+    margin-top: 10px !important;
+  }
+}
+@media screen and (max-width: 960px) {
+  .recent-borrows-records {
+    overflow-x: scroll;
+  }
+}
+@media screen and (min-width: 575px) {
+  .recent-borrows-records {
+    max-height: 230px;
+    overflow-y: scroll;
+  }
+}
+@media screen and (max-width: 880px) {
+  .table-wrapper {
+    overflow-x: scroll;
+  }
+}
+/* @media screen and (min-width: 520px) {
+  .table-wrapper {
+    max-width: 100%;
+    width: 100%;
+    overflow-y: hidden;
+  }
+} */

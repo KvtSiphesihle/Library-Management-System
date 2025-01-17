@@ -1,0 +1,67 @@
+﻿@using Innovation_Library.Models
+@using Microsoft.AspNet.Identity 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Student.cshtml";
+
+    ApplicationDbContext db = new ApplicationDbContext();
+
+    var UserId = User.Identity.GetUserId();
+    var Orders = db.Orders.Where(o => o.CustomerId == UserId).ToList();
+    var Coupons = db.Coapons.ToList();
+    var PendingPayment = db.Orders.Where(o => o.CustomerId == UserId && o.isPayed == false).ToList();
+}
+<div class="student-dash-title">
+    <h6>Order Management</h6>
+</div>
+<p class="my-1 mx-0">Manage all of your orders.</p>
+<div class="row my-2">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0">Total Orders</h4>
+            </div>
+            <div class="card-body">
+                <h1>@Orders.Count()</h1>
+                <span>Orders</span>
+            </div>
+            <div class="card-footer">
+                <a class="student-btn stu-btn-secondary" href="@Url.Action("UserOrders", "Order")">Back To My Orders</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0">Payment Pending Orders</h4>
+            </div>
+            <div class="card-body">
+                <h1>@PendingPayment.Count()</h1>
+                <span>Orders</span>
+            </div>
+            <div class="card-footer">
+                <a class="student-btn bg-dark" href="@Url.Action("UserOrders", "Order")">Back To My Orders</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0">Coupons</h4>
+            </div>
+            <div class="card-body">
+                <h1>@Coupons.Count()</h1>
+                <span>Coupons</span>
+            </div>
+            <div class="card-footer">
+                <a class="student-btn stu-btn-primary" href="@Url.Action("UserOrders", "Order")">View Coupons</a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<a class="student-btn stu-btn-primary" href="@Url.Action("ExchangeItem", "OrderManagement")">Order manager</a>
+<a class="student-btn stu-btn-secondary" href="@Url.Action("ScheduleOrder", "OrderManagement")">Schedule Order</a>
+
+
+

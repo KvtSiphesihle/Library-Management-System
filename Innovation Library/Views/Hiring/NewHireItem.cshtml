@@ -1,0 +1,43 @@
+﻿@model Innovation_Library.Models.Room
+@{
+    ViewBag.Title = "New Hire Item";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "New Hire Item";
+}
+
+<div class="room-form">
+    @using (Html.BeginForm("NewHireItem", "Hiring", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <p>Add New Item</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label class="label">Item Name</label>
+                    <input name="ItemName" class="form-control" type="text" placeholder="laptop" />
+                </div>
+                <div class="form-group mb-3">
+                    <label class="label">Price(Per Day)</label>
+                    <input name="ItemPrice" class="form-control" type="number" placeholder="50" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label class="label">Item Image</label>
+                    <input name="ImageFile" class="form-control image-File text-black" type="file" />
+                </div>
+                <div class="form-group mb-2">
+                    <label class="label">Item Quantity</label>
+                    <input name="ItemQuantity" class="form-control text-black" type="number" />
+                </div>
+                <div class="form-group mb-2">
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        Save Hire Item
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+

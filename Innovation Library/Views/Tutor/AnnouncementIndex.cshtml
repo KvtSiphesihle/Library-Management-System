@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Innovation_Library.Models.Announcement>
+@{
+    ViewBag.Title = "AnnouncementIndex";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.PageName = "Announcements";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Announcements</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.AnnouncementId</td>
+            <td>@item.AnnouncementText</td>
+            <td>
+                <a href="@Url.Action("DeleteAnnouncement", "Tutor", new {id=item.AnnouncementId})" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
